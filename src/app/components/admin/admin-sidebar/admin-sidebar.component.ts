@@ -9,7 +9,7 @@ import { SidebarAdminService } from '../../../services/sidebar-admin.service';
 export class SidebarAdminComponent implements OnInit {
 
 
- constructor(private adminsidebar:SidebarAdminService ) 
+ constructor(public adminsidebar:SidebarAdminService ) 
  {
  	this.adminsidebar.show();
  }
