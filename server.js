@@ -54,4 +54,7 @@ app.listen(process.env.PORT || 8080);
   },
 */
 
+/*
+    "start": "ng serve --port 4500 --proxy-config proxy.conf.json node server.js",
+*/
 
