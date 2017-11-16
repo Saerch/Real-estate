@@ -10,6 +10,8 @@ app.listen(process.env.PORT || 8080);
 
 
 /*
+  "postinstall": "ng build --aot -prod"
+
 /*
 {
   "name": "trac-ko",
