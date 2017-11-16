@@ -12,6 +12,10 @@ app.listen(process.env.PORT || 8080);
 /*
   "postinstall": "ng build --aot -prod"
 
+
+  "preinstall": "npm install -g @angular/cli",
+    "postinstall": "ng build --aot -prod"
+    
 /*
 {
   "name": "trac-ko",
