@@ -25,7 +25,7 @@ import {LocalAssets} from './services/LocalDataService';
 /*  PIPES  */
 
 //Admin Pipe
-import { adminPipe,userPipe } from './pipes/pipeSAdmin';
+import { adminPipe,userPipe } from './pipes/pipeSadmin';
 
 
 /*  COMPONENTS  */
