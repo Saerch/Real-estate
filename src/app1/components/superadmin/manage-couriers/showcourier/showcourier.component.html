@@ -1,0 +1,34 @@
+<div class="superadmin">
+
+<table class="table table-striped table-hover table-bordered">
+  <thead class="thead-inverse">
+    <tr>
+      <th>S.No</th>
+      <th>User Id</th>
+      <th>From</th>
+      <th>To</th>
+      <th>Consignment Id</th>
+      <th>Total Price</th>
+      <th><span class="glyphicon glyphicon-calendar" style="font-size:20px"></span> Booking Date</th>
+      <th><span class="glyphicon glyphicon-calendar" style="font-size:20px"></span> Received Date</th>
+      <th><span class="glyphicon glyphicon-send" style="font-size:20px"></span> Mode</th>
+      <th><i class="fa fa-twitch" style="font-size:20px"></i> Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let i of C_arr; let j=index">
+      <th scope="row">{{j}}</th>
+      <td>{{i.Uid}}</td>
+      <td>{{i.From}}</td>
+      <td>{{i.To}}</td>
+      <td>{{i.ConId}}</td>
+      <td>{{i.Tprice}}</td>
+      <td>{{i.BDate}}</td>
+      <td>{{i.RDate}}</td>
+      <td>By {{i.Mode}}</td>
+      <td><span class="badge badge-info">{{i.Status}}</span></td>
+    </tr>
+  </tbody>
+</table>
+
+</div>

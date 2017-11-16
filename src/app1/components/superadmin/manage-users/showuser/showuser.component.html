@@ -1,0 +1,52 @@
+<div class="superadmin">
+
+<div class="well">
+  <div class="row">
+    <div class="col-lg-2 text-center">
+      <label><input type="text" class="form-control" placeholder="By Id" [(ngModel)]="U_id" ></label>
+    </div>
+    <div class="col-lg-2 text-center">
+      <label><input type="text" class="form-control" placeholder="By Full Name" [(ngModel)]="U_name" ></label>
+    </div>
+    <div class="col-lg-2 text-center">
+      <label><input type="text" class="form-control" placeholder="By First Name" [(ngModel)]="F_name" ></label>
+    </div>
+    <div class="col-lg-2 text-center">
+      <label><input type="text" class="form-control" placeholder="By Last Name" [(ngModel)]="L_name" ></label>
+    </div>
+    <div class="col-lg-2 text-center">
+      <label><input type="text" class="form-control" placeholder="By Email" [(ngModel)]="U_mail" ></label>
+    </div>
+    <div class="col-lg-2 text-center">
+      <label><input type="text" class="form-control" placeholder="By Address" [(ngModel)]="U_loc" ></label>
+    </div>
+  </div>
+</div>
+<table class="table table-striped table-hover table-bordered">
+  <thead class="thead-inverse">
+    <tr>
+      <th>S.No</th>
+      <th>User Id</th>
+      <th>Name</th>
+      <th>Password</th>
+      <th>Gender</th>
+      <th>Email</th>
+      <th>Mobile</th>
+      <th>Address</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let i of U_arr | id : U_id | Uname : U_name | Fnam : F_name | Lnam : L_name | Umail : U_mail | Uadd : U_loc; let j=index">
+      <th scope="row">{{j}}</th>
+      <td>{{i.Uid}}</td>
+      <td>{{i.Fname}} {{i.Lname}}</td>
+      <td>{{i.Pass}}</td>
+      <td>{{i.Gender}}</td>
+      <td>{{i.Email}}</td>
+      <td>{{i.Mob}}</td>
+      <td>{{i.Add}}</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>

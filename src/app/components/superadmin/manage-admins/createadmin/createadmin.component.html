@@ -1,0 +1,53 @@
+<div class="superadmin">
+  <div *ngIf="!successFlag" class="well">
+    <h3>Admin Registration</h3><hr>
+    <form #adForm="ngForm" (ngSubmit)="AdminData(adForm.value)">
+      <div class="row">
+          <div class="col-xs-12 form-group">
+            <input type="text" class="form-control" placeholder="Enter Name" minlength="4" maxlength="35" required name="name" ngModel>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-xs-12 form-group">
+            <input type="password" class="form-control" placeholder="Enter Password" minlength="6" maxlength="20" required name="pass" ngModel>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-xs-12 form-group">
+            <select class="form-control" name="country" (change)="CtrChange($event.target.value)" required ngModel>
+              <option value="" selected>Country</option>
+              <option *ngFor="let i of DDown" [value]="i.Country">{{i.Country}}</option>
+            </select>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-xs-12 form-group">
+            <select [disabled]="Ccontrol" class="form-control" name="city" required ngModel>
+              <option value="" selected>City</option>
+              <option *ngFor="let j of cities" [value]="j">{{j}}</option>
+            </select>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6">
+            <button type="reset" class="btn btn-warning">Reset</button>
+        </div>
+        <div class="col-xs-6">
+            <button type="submit" class="btn btn-warning">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="well" *ngIf="successFlag">
+    <div class="alert alert-success">You have Successfully Added Admin !!!</div><br>
+    <div class="row">
+      <div class="col-xs-6">
+        <button (click)="adList()" class="btn btn-success"><i class="fa fa-hand-o-right"></i> Go To Admin List</button>
+      </div>
+      <div class="col-xs-6">
+        <button (click)="Back()" class="btn btn-success"><i class="fa fa-hand-o-right"></i> Add Another Admin</button>
+      </div>
+    </div>      
+  </div>
+</div>

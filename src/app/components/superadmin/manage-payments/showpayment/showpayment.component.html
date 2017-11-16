@@ -1,0 +1,51 @@
+<div class="superadmin">
+  
+  <div class="well">
+      <div class="row">
+        <div class="col-xs-4 text-center">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-search"></i></span> 
+            <input type="text" class="form-control" placeholder="By Consignment Id" [(ngModel)]="C_id" >
+          </div>
+        </div>
+        <div class="col-xs-4 text-center">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-search"></i></span> 
+            <input type="text" class="form-control" placeholder="By Total Payment" [(ngModel)]="T_py" >
+          </div>
+        </div>
+        <div class="col-xs-4 text-center">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-search"></i></span> 
+            <input type="text" class="form-control" placeholder="By Remaining Payment" [(ngModel)]="R_py" >
+          </div>
+        </div>
+      </div>
+  </div>
+
+<div class="container-fluid" style="margin-top:60px">
+  <table class="table table-hover table-bordered table-responsive">
+    <thead class="thead-inverse">
+    <tr>
+      <th>S.No</th>
+      <th><span class="glyphicon glyphicon-asterisk" style="font-size:12px"></span> Consignment Id</th>
+      <th><i class="fa fa-dollar" style="font-size:15px"></i> Total Payment</th>
+      <th><i class="fa fa-dollar" style="font-size:15px"></i> Received Payment</th>
+      <th><i class="fa fa-dollar" style="font-size:15px"></i> Remaining Payment</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let i of P_arr; let j=index">
+      <th scope="row">{{j}}</th>
+      <td>{{i.ConId}}</td>
+      <td>{{i.TotPt}}</td>
+      <td>{{i.RecPt}}</td>
+      <td>{{i.RemPt}}</td>
+      <td><span class="glyphicon glyphicon-pencil"><button class="badge badge-info">Edit</button></span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</div>

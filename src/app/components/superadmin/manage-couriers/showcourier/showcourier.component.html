@@ -1,0 +1,87 @@
+<div class="superadmin">
+
+  <div class="well">
+      <div class="row">
+        <div class="col-xs-2">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-search"></i></span>  
+            <input type="text" class="form-control" placeholder="Consignment Id" [(ngModel)]="Cid" >
+          </div>
+        </div>
+        <div class="col-xs-2">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+            <input type="text" class="form-control" placeholder="From" [(ngModel)]="from" >
+          </div>
+        </div>
+        <div class="col-xs-2">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+            <input type="text" class="form-control" placeholder="To" [(ngModel)]="to" >
+          </div>
+        </div>
+        <div class="col-xs-2">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+            <input type="text" class="form-control" placeholder="User Id" [(ngModel)]="id" >
+          </div>
+        </div>
+        <div class="col-xs-1">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+            <input type="text" class="form-control" placeholder="Book Date" [(ngModel)]="bdate" >
+          </div>
+        </div>
+        <div class="col-xs-1">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+            <input type="text" class="form-control" placeholder="Delivered Date" [(ngModel)]="rdate" >
+          </div>
+        </div>
+        <div class="col-xs-1">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+            <input type="text" class="form-control" placeholder="Mode" [(ngModel)]="mode" >
+          </div>
+        </div>
+        <div class="col-xs-1">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+            <input type="text" class="form-control" placeholder="Status" [(ngModel)]="status" >
+          </div>
+        </div>
+      </div>
+  </div>
+<div class="container-fluid" style="margin-top:60px">
+  <table class="table table-hover table-bordered table-responsive">
+    <thead class="thead-inverse">
+    <tr>
+      <th>S.No</th>
+      <th>Consignment Id</th>
+      <th>From</th>
+      <th>To</th>
+      <th>User Id</th>
+      <th>Total Price</th>
+      <th><span class="glyphicon glyphicon-calendar" style="font-size:20px"></span> Booking Date</th>
+      <th><span class="glyphicon glyphicon-calendar" style="font-size:20px"></span> Received Date</th>
+      <th><span class="glyphicon glyphicon-send" style="font-size:20px"></span> Mode</th>
+      <th><i class="fa fa-twitch" style="font-size:20px"></i> Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let i of C_arr; let j=index">
+      <th scope="row">{{j+1}}</th>
+      <td>{{i.ConId}}</td>
+      <td>{{i.From}}</td>
+      <td>{{i.To}}</td>
+      <td>{{i.Uid}}</td>
+      <td>{{i.Tprice}}</td>
+      <td>{{i.BDate}}</td>
+      <td>{{i.RDate}}</td>
+      <td>By {{i.Mode}}</td>
+      <td><span class="badge badge-info">{{i.Status}}</span></td>
+    </tr>
+  </tbody>
+</table>
+
+</div>

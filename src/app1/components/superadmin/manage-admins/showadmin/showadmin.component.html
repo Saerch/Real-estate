@@ -1,0 +1,41 @@
+<div class="superadmin">
+
+<div class="well">
+  <div class="row">
+    <div class="col-xs-6 text-center">
+      <label><span class="glyphicon glyphicon-search"></span> <input type="text" placeholder="By Id" [(ngModel)]="Ad_id" ></label>
+    </div>
+    <div class="col-xs-6 text-center">
+      <label><span class="glyphicon glyphicon-search"></span> <input type="text" placeholder="By Location" [(ngModel)]="Ad_loc" ></label>
+    </div>
+  </div>
+</div>
+
+<table class="table table-striped table-hover table-bordered">
+  <thead class="thead-inverse">
+    <tr>
+      <th>S.No</th>
+      <th>Admin Id</th>
+      <th>Admin Password</th>
+      <th>Location</th>
+      <!--<th>Latitude</th>
+      <th>Longitude</th>-->
+      <th>Privileges</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let i of Ad_arr | adId : Ad_id | adLoc : Ad_loc | paginate: { itemsPerPage: 10, currentPage: p }; let j=index;">
+      <th scope="row">{{j}}</th>
+      <td>{{i.AdminId}}</td>
+      <td style="font-size: 20px">{{getAstk(i.AdminPass)}}</td>
+      <td>{{i.AdminLocation}}</td>
+      <!--<td>{{i.AdminLatitude}}</td>
+      <td>{{i.AdminLongitude}}</td>-->
+      <td><span class="glyphicon glyphicon-pencil"><button class="badge badge-info">Edit</button></span></td>
+    </tr>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+  </tbody>
+</table>
+
+</div>

@@ -1,0 +1,28 @@
+.superadmin
+{	
+	margin-top: 0px;
+	padding-left: 200px;
+	padding-right: 0px;
+}
+
+
+@media screen and (min-width:280px ) and (max-width:480px )
+{
+	.superadmin
+{	
+	margin-top: 0px;
+	padding-left: 100px;
+	padding-right: 0px;
+}
+
+}
+
+
+thead{
+    background-color: #23273a;
+    color:white;
+}
+
+.badge{
+    background-color: #4fb735;
+}

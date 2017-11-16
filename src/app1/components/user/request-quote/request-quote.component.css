@@ -1,0 +1,22 @@
+.user
+{ 
+  margin-top: 100px;
+  padding:50px;
+  color:#000000;
+}
+
+
+
+
+
+@media screen and (min-width:280px) and (max-width:768px)
+{
+  
+.user
+{ 
+  margin-top: 150px;
+  padding:50px;
+  color:#000000;
+}
+
+}

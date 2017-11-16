@@ -1,0 +1,47 @@
+.superadmin{	
+	margin-top: 0px;
+	padding-left: 200px;
+	padding-right: 0px;
+}
+
+
+@media screen and (min-width:280px ) and (max-width:480px ){
+	.superadmin
+	{	
+		margin-top: 0px;
+		padding-left: 100px;
+		padding-right: 0px;
+	}
+}
+
+.form-control{
+	color:black;
+	text-transform: none;
+}
+
+.form-control::placeholder{
+	color:black;
+}
+
+.well{
+	background-color:crimson;
+	width:50%;
+	margin:auto;
+	margin-top:70px;
+	text-align: center;
+}
+
+h3{
+	text-align: center; 
+	color:#f5ab35;
+}
+
+button{
+	width:100%;
+}
+
+.btn-success{
+	background-color: #d6e9c6;
+}
+
+

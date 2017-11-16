@@ -1,0 +1,25 @@
+.panel{
+    border-radius: 0px;
+    border-left: none;
+    border-right: none;
+    background-color: transparent;
+    margin:auto;
+}
+
+thead{
+    text-align: center;
+    background-color: black;
+}
+th{
+    text-align: center;
+}
+
+td{
+    text-align: center;
+    color: #ffca28;
+}
+
+.statbox{
+    width:10em;
+}
+
