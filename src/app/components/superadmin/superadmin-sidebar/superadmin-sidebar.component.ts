@@ -10,7 +10,7 @@ declare var $: any;
 })
 export class SidebarSuperadminComponent{
 
- constructor(private superadminsidebar:SidebarSuperadminService ) 
+ constructor(public superadminsidebar:SidebarSuperadminService ) 
  {
  	this.superadminsidebar.show();
  }

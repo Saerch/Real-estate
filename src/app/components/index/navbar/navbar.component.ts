@@ -8,7 +8,7 @@ import { NavbarUserService } from '../../../services/navbar-user.service';
 })
 export class NavbarComponent{
 
- constructor(private navbaruser:NavbarUserService ) 
+ constructor(public navbaruser:NavbarUserService ) 
     {  this.navbaruser.show();   }
 
 }
