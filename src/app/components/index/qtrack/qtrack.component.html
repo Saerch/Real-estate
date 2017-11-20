@@ -1,17 +1,42 @@
-<div class="progress" style="margin:auto;margin-top:150px; width:70%">
-    <div class="progress-bar progress-bar-warning progress-bar-striped active"  role="progressbar" style="border-right:1px solid black">MyBar</div>
-    <div class="progress-bar progress-bar-warning progress-bar-striped active"  role="progressbar" style="border-right:1px solid black">MyBar</div>
-    <div class="progress-bar progress-bar-warning progress-bar-striped active"  role="progressbar" style="border-right:1px solid black">MyBar</div>
-    <div class="progress-bar progress-bar-warning progress-bar-striped active"  role="progressbar" style="border-right:1px solid black">MyBar</div>
-    <div class="progress-bar progress-bar-warning progress-bar-striped active"  role="progressbar" style="border-right:1px solid black">MyBar</div>
-    <div class="progress-bar progress-bar-warning progress-bar-striped active"  role="progressbar" style="border-right:1px solid black">MyBar</div>
-    <div class="progress-bar progress-bar-warning progress-bar-striped active"  role="progressbar" style="border-right:1px solid black">MyBar</div>
-    <div class="progress-bar progress-bar-warning progress-bar-striped active"  role="progressbar" style="border-right:1px solid black">MyBar</div>
-    <div class="progress-bar progress-bar-warning progress-bar-striped active"  role="progressbar" style="border-right:1px solid black">MyBar</div>
+<div class="container-fluid">
+<div class="well">
+    <div class="row">
+        <div class="col-xs-12">
+            <button type="button" class="close text-right" (click)="Closer()" style="width:fit-content; color:black">&times;</button>
+            <h3>EzyTrack <i class="fa fa-paper-plane" aria-hidden="true"></i></h3>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-xs-6">
+            <h4>AWB Number: {{trId}}</h4>
+        </div>
+        <div class="col-xs-6 text-right">
+            <h4>Mode: <i *ngIf="x==1" class="fa fa-plane" aria-hidden="true"></i><i *ngIf="x==2" class="fa fa-ship" aria-hidden="true"></i><i *ngIf="x==3" class="fa fa-truck" aria-hidden="true"></i></h4>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-xs-12">
+            <h5>Progress Bar</h5>
+        </div>
+    </div>
+    <div class="progress">
+        <div class="progress-bar progress-bar-info progress-bar-striped active"  role="progressbar">MyBar</div>
+        <div class="progress-bar progress-bar-info progress-bar-striped active"  role="progressbar">MyBar</div>
+        <div class="progress-bar progress-bar-info progress-bar-striped active"  role="progressbar">MyBar</div>
+        <div class="progress-bar progress-bar-info progress-bar-striped active"  role="progressbar">MyBar</div>
+        <div class="progress-bar progress-bar-info progress-bar-striped active"  role="progressbar">MyBar</div>
+        <div class="progress-bar progress-bar-info progress-bar-striped active"  role="progressbar">MyBar</div>
+        <div class="progress-bar progress-bar-info progress-bar-striped active"  role="progressbar">MyBar</div>
+        <div class="progress-bar progress-bar-info progress-bar-striped active"  role="progressbar">MyBar</div>
+        <div class="progress-bar progress-bar-info progress-bar-striped active"  role="progressbar">MyBar</div>
+    </div>
+</div>
 </div>
 
 <!--  Footer  -->
-<div style="margin-top:150px">
+<div>
 <footer class="containerAbc nav-folderized">
     <div class="row">
         <div class="col-md-2 ftr__list nav">

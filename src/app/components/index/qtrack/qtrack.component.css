@@ -1,16 +1,38 @@
+.container-fluid{
+    background: url("../../../../assets/Images/0428.jpg") no-repeat top right;
+    background-size: cover;
+    padding-bottom: 150px;
+}
+
+.well{
+    margin:auto;
+    margin-top: 150px;
+    width:90%;
+    height:60%;
+    background-color: #1878cc;
+}
+
 .progress{
     height:60px;
 }
 
 .progress-bar{
-    padding-top:15px;
-    padding-left:10px;
-    padding-right:10px;
     padding:auto;
+    padding-top:18px;
+    border-right:1px solid black;
+    font-family: Consolas;
+    font-weight: bold;
     color:black;
 }
 
+h3,h4,h5{
+    color: #ffca28;
+}
 
+h4 i{
+    font-size: 25px;
+}
+i{color: black}
 
 .data{
     color:whitesmoke;

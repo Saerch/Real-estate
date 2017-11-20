@@ -66,6 +66,18 @@ export class DataUserService
                 .catch(this.handleError);
     }
 
+    GenerateOTP(mob:string):Observable<Response>{
+        return this._http.get("api/OTP_generate/"+mob)
+                .map( (res:Response) => res )
+                .catch(this.handleError);
+    }
+
+    ChangeUserPass(id:number, pass:string):Observable<Response>{
+        return this._http.get("api/chUserPass/"+id.toString()+"/"+pass)
+                .map( (res:Response) => res )
+                .catch(this.handleError);
+    }
+
     private extractData(res: Response) {
     let body = res.json();
             return body.data || {};

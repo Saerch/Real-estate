@@ -45,6 +45,7 @@ export class RegisterComponent implements OnInit {
   Tweight=0;
   Tprice=0;
   bmode="";
+  CurCh=true;
   Ccontrol=true;
   cities=[];
   empty="";
@@ -55,6 +56,7 @@ export class RegisterComponent implements OnInit {
  constructor(private navbaruser:NavbarUserService,private superadminsidebar:SidebarSuperadminService,private adminsidebar: SidebarAdminService, private rt:Router,private svc:DataCourierService, private lvc:LocalAssets, private usvc:DataUserService){
    this.trackDiv=false;
    this.trackFoot=true;
+   this.CurCh=true;
    this.navbaruser.show();
    this.superadminsidebar.hide();
    this.adminsidebar.hide();
@@ -67,6 +69,26 @@ export class RegisterComponent implements OnInit {
 	    $(this).parent(".nav").toggleClass("open"); 
 	    $('html, body').animate({ scrollTop: $(this).offset().top - 170 }, 1500 );
     });
+    
+  }
+
+  ngAfterViewChecked() {
+    $('.numeridot').keypress(function(key) {
+        if((key.charCode < 48 || key.charCode > 57) && (key.charCode != 46)) return false;
+    });
+
+    $('.numeri').keypress(function(key) {
+        if(key.charCode < 48 || key.charCode > 57) return false;
+    });
+
+    $('.alpha_bet').keypress(function(key) {
+        if((key.charCode < 97 || key.charCode > 122) && (key.charCode < 65 || key.charCode > 90) && (key.charCode != 45)) return false;
+    });
+
+    $('.moby').keypress(function(key) {
+        if(key.charCode < 48 || key.charCode > 57) return false;
+    });
+
   }
 
   Direct(){
@@ -76,8 +98,12 @@ export class RegisterComponent implements OnInit {
   }
 
   Extns(){
+  if(this.Arr.length<6){
     this.Arr.push(new Item_groups("",1,0,0,""));
     this.trackFoot=true;
+    }else{
+      alert("Groups Limit Reached");
+    }
   }
 
 FormSub(t){
@@ -97,6 +123,10 @@ FormSub(t){
 
 RedLogin(){
   this.rt.navigate(['login']);
+}
+
+Closer(){
+  this.rt.navigate(['']);
 }
 
 dimChange(a,b,c,d){
@@ -150,30 +180,29 @@ PrefChange(a){
 }
 
 Dxtns(){
-    if(this.Arr.length==1){
+    if(this.Arr.length==1 || this.Arr.length==0){
       this.Arr.length=0;
     this.trackFoot=false;}
     else{
       this.Arr.length--;
     }
-  }  
+  }
 
   calcWeight(){
     for(var x=0;x<this.Arr.length;x++){
-      this.Tweight+=(this.Arr[x].weightPerItem*this.Arr[x].noOfItems);
+      this.Tweight+=Math.round(this.Arr[x].weightPerItem*this.Arr[x].noOfItems);
     }
   }
 
   calcPrice(){
     for(var x=0;x<this.Arr.length;x++)
       {
-            this.Tprice+=(this.Arr[x].pricePerItem*this.Arr[x].noOfItems);
+            this.Tprice+=Math.round(this.Arr[x].pricePerItem*this.Arr[x].noOfItems);
       }
       this.Tprice+=(0.2)*this.Tprice;
   }
 
   FromCtrChange(s){
-  //console.log(s);
   this.Cfcontrol=false;
   for(var x=0; x<this.DDown.length;x++){
     if(s==this.DDown[x].Country){
@@ -212,7 +241,6 @@ ToCtrChange(s){
   }
 
   CtrChange(s){
-  //console.log(s);
   this.Ccontrol=false;
   for(var x=0; x<this.DDown.length;x++){
     if(s==this.DDown[x].Country){
@@ -251,4 +279,13 @@ ToCtrChange(s){
       }
   }
 
+  Pconv(){
+    if(this.CurCh){
+      this.Tprice = Math.round(this.Tprice/65);
+      this.CurCh=false;
+    }else{
+      this.Tprice = Math.floor(this.Tprice * 65);
+      this.CurCh=true; 
+    }
+  }
 }

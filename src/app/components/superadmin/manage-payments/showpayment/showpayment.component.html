@@ -5,19 +5,23 @@
         <div class="col-xs-4 text-center">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-search"></i></span> 
-            <input type="text" class="form-control" placeholder="By Consignment Id" [(ngModel)]="C_id" >
+            <input type="text" class="form-control" placeholder="User Id" [(ngModel)]="U_id" >
           </div>
         </div>
         <div class="col-xs-4 text-center">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-search"></i></span> 
-            <input type="text" class="form-control" placeholder="By Total Payment" [(ngModel)]="T_py" >
+            <input type="text" class="form-control" placeholder="Order Id" [(ngModel)]="O_id" >
           </div>
         </div>
         <div class="col-xs-4 text-center">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-search"></i></span> 
-            <input type="text" class="form-control" placeholder="By Remaining Payment" [(ngModel)]="R_py" >
+            <select class="form-control" (change)="StatChange($event.target.value)">
+              <option value="" selected>Payment Status</option>
+              <option value="Remaining">Remaining</option>
+              <option value="Received">Received</option>
+            </select>
           </div>
         </div>
       </div>
@@ -28,21 +32,19 @@
     <thead class="thead-inverse">
     <tr>
       <th>S.No</th>
-      <th><span class="glyphicon glyphicon-asterisk" style="font-size:12px"></span> Consignment Id</th>
-      <th><i class="fa fa-dollar" style="font-size:15px"></i> Total Payment</th>
-      <th><i class="fa fa-dollar" style="font-size:15px"></i> Received Payment</th>
-      <th><i class="fa fa-dollar" style="font-size:15px"></i> Remaining Payment</th>
-      <th></th>
+      <th>User Id</th>
+      <th>Order Id</th>
+      <th><i class="fa fa-inr" aria-hidden="true"></i> | <i class="fa fa-usd" aria-hidden="true"></i> Total Payment</th>
+      <th><i class="fa fa-twitch" aria-hidden="true"></i> Payment Status</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let i of P_arr; let j=index">
-      <th scope="row">{{j}}</th>
-      <td>{{i.ConId}}</td>
-      <td>{{i.TotPt}}</td>
-      <td>{{i.RecPt}}</td>
-      <td>{{i.RemPt}}</td>
-      <td><span class="glyphicon glyphicon-pencil"><button class="badge badge-info">Edit</button></span></td>
+    <tr *ngFor="let i of P_arr | pyPipe : U_id : O_id : stat; let j=index">
+      <td>{{j+1}}</td>
+      <td>{{i.userId}}</td>
+      <td>{{i.conId}}</td>
+      <td>{{i.price}}</td>
+      <td><button *ngIf="i.pystat" class="btn btn-info">Received</button><button *ngIf="!i.pystat" class="btn btn-info">Remaining</button></td>
     </tr>
   </tbody>
 </table>

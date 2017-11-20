@@ -38,6 +38,7 @@ import { OrdersComponent } from './components/user/orders/orders.component';
 import { CbookingComponent } from './components/user/cbooking/cbooking.component';
 import { ProfileComponent } from './components/user/profile/profile.component';
 import { PasschangeComponent } from './components/user/passchange/passchange.component';
+import { TrackreportComponent } from './components/user/trackreport/trackreport.component';
 
 const APP_ROUTES:Routes=
 [
@@ -124,6 +125,9 @@ const APP_ROUTES:Routes=
             },
             {
                 path:'userPchange', component:PasschangeComponent
+            },
+            {
+                path:'userTrackRepo', component:TrackreportComponent
             }
         ]
     },

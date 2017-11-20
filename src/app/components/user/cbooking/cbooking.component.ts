@@ -4,7 +4,9 @@ import { Bookings, Item_groups } from '../../../Blueprints/Order';
 import { DataCourierService } from '../../../services/CourierDataService';
 import { userDashboard } from '../../../services/UserDashService';
 import { DataUserService } from '../../../services/UserDataService';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
+
+declare var $: any;
 
 @Component({
   selector: 'app-cbooking',
@@ -29,25 +31,61 @@ export class CbookingComponent {
   Tweight=0;
   Tprice=0;
   bmode="";
+  CurCh=true;
 
-  constructor(private svc:DataCourierService, private lvc:LocalAssets, private usvc:DataUserService, private Shsvc:userDashboard, private router:Router) {
+  constructor(private svc:DataCourierService, private lvc:LocalAssets, private usvc:DataUserService, private Shsvc:userDashboard, private rout:Router) {
+    userDashboard.userid = parseInt(localStorage.getItem('user'));
     lvc.getCountryDDowns().subscribe( t => {this.DDown = t} );
     this.Arr.push(new Item_groups("",1,0,0,""));
    }
 
+   ngOnInit(){
+    this.trackFoot=true;
+    this.Ctcontrol=true;
+    this.Cfcontrol=true;
+    this.CurCh=true;
+   }
+
+   ngAfterViewChecked() {
+    $('.numeridot').keypress(function(key) {
+        if((key.charCode < 48 || key.charCode > 57) && (key.charCode != 46)) return false;
+    });
+
+    $('.numeri').keypress(function(key) {
+        if(key.charCode < 48 || key.charCode > 57) return false;
+    });
+
+    $('.alpha_bet').keypress(function(key) {
+        if((key.charCode < 97 || key.charCode > 122) && (key.charCode < 65 || key.charCode > 90)) return false;
+    });
+  }
+
+  Closer(){
+    this.rout.navigate(['user']);
+  }
+
+
   Extns(){
+  if(this.Arr.length<6){
     this.Arr.push(new Item_groups("",1,0,0,""));
     this.trackFoot=true;
+    }else{
+      alert("Groups Limit Reached");
+    }
   }
 
 FormSub(t){
   this.Ord = new Bookings(userDashboard.userid,t.fstreet, t.fcity,t.fcountry,t.tstreet, t.tcity, t.tcountry,this.Tweight, this.Tprice,new Date(2017,11,8), new Date(2017,11,11),this.bmode,"Waiting For Pickup",this.Arr);
-  //console.log(this.Ord);
   this.svc.postOrder(this.Ord).subscribe(t  => {
     if(t.text()=="Posted"){
       alert("Booking Successfull");
-      this.router.navigate(['user']);
-    }
+      $('#wait').modal('hide');
+      this.rout.navigate(['user']);
+    }else{
+       alert("Booking Failed. Please Try After Some Time");
+       $('#wait').modal('hide');
+        this.rout.navigate(['user']);
+      }
   });
 }
 
@@ -102,7 +140,7 @@ PrefChange(a){
 }
 
 Dxtns(){
-    if(this.Arr.length==1){
+    if(this.Arr.length==1 || this.Arr.length==0){
       this.Arr.length=0;
     this.trackFoot=false;}
     else{
@@ -112,20 +150,19 @@ Dxtns(){
 
   calcWeight(){
     for(var x=0;x<this.Arr.length;x++){
-      this.Tweight+=(this.Arr[x].weightPerItem*this.Arr[x].noOfItems);
+      this.Tweight+=Math.round(this.Arr[x].weightPerItem*this.Arr[x].noOfItems);
     }
   }
 
   calcPrice(){
     for(var x=0;x<this.Arr.length;x++)
       {
-            this.Tprice+=(this.Arr[x].pricePerItem*this.Arr[x].noOfItems);
+            this.Tprice+=Math.round(this.Arr[x].pricePerItem*this.Arr[x].noOfItems);
       }
       this.Tprice+=(0.2)*this.Tprice;
   }
 
   FromCtrChange(s){
-  //console.log(s);
   this.Cfcontrol=false;
   for(var x=0; x<this.DDown.length;x++){
     if(s==this.DDown[x].Country){
@@ -135,7 +172,6 @@ Dxtns(){
 }
 
     ToCtrChange(s){
-    //console.log(s);
     this.Ctcontrol=false;
     for(var x=0; x<this.DDown.length;x++){
       if(s==this.DDown[x].Country){
@@ -158,6 +194,16 @@ Dxtns(){
       this.Cfcontrol=true;
       this.uAdd.fromcity="";
       this.uAdd.fromcountry="";
+    }
+  }
+
+  Pconv(){
+    if(this.CurCh){
+      this.Tprice = Math.round(this.Tprice/65);
+      this.CurCh=false;
+    }else{
+      this.Tprice = Math.floor(this.Tprice * 65);
+      this.CurCh=true; 
     }
   }
 

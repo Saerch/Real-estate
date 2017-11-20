@@ -3,6 +3,8 @@ import { DataPaymentService } from '../../../../services/PymtDataService';
 import { NavbarUserService } from '../../../../services/navbar-user.service';
 import { SidebarSuperadminService } from '../../../../services/sidebar-superadmin.service';
 import { SidebarAdminService } from '../../../../services/sidebar-admin.service';
+import { Bookings, Item_groups } from '../../../../Blueprints/Order';
+import { DataCourierService } from '../../../../services/CourierDataService';
 
 @Component({
   selector: 'app-showpayment',
@@ -12,19 +14,28 @@ import { SidebarAdminService } from '../../../../services/sidebar-admin.service'
 export class SuperadminShowpaymentComponent implements OnInit {
 
 P_arr=[];
-C_id="";
-T_py="";
-R_py="";
+U_id="";
+O_id="";
+stat:boolean;
 
-constructor(private navbaruser:NavbarUserService,private superadminsidebar:SidebarSuperadminService,private adminsidebar: SidebarAdminService,private svc:DataPaymentService){
+constructor(private navbaruser:NavbarUserService,private superadminsidebar:SidebarSuperadminService,private adminsidebar: SidebarAdminService,private svc:DataCourierService){
 this.navbaruser.hide();
 this.superadminsidebar.show();
 this.adminsidebar.hide();
 }
 
 ngOnInit() {
-  this.svc.getPyVals().subscribe( t => {this.P_arr = t} );
+    this.svc.getAllOrders().subscribe( t => { this.P_arr = t; console.log(t) } );
 }
 
+StatChange(s){
+  if(s=="Remaining"){
+    this.stat=false;
+  }else if(s=""){
+    this.stat=undefined;
+  }else{
+    this.stat=true;
+  }
+}
 
 }

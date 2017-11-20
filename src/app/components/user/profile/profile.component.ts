@@ -19,6 +19,7 @@ export class ProfileComponent implements OnInit {
   constructor(private lsvc:LocalAssets, private Usvc:DataUserService) {}
 
   ngOnInit() {
+    userDashboard.userid = parseInt(localStorage.getItem('user'));
     this.lsvc.getCountryDDowns().subscribe( t => {this.DDown = t} );
     this.Usvc.GetUserById(userDashboard.userid).subscribe( data => {this.Darr = data; this.CtrChange(this.Darr.ucountry)} );
   }

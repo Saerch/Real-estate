@@ -31,6 +31,18 @@ thead{
     color:white;
 }
 
+thead tr th, tbody tr td{
+	text-align: center;
+}
+
+.modal{
+	text-align: left;
+}
+
+td{
+	color:black;
+}
+
 .badge{
 	background-color: #4fb735;
 	padding:5px 10px;

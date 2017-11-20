@@ -17,7 +17,7 @@ declare var $: any;
 })
 export class OrdersComponent implements OnInit {
 
-  DaRR=[];
+  u_Ords=[];
   username="";
 
   constructor(private navbaruser:NavbarUserService,private superadminsidebar:SidebarSuperadminService,private adminsidebar: SidebarAdminService, private svc:userDashboard, private rout:Router, private Dsvc:DataUserService){
@@ -31,9 +31,15 @@ export class OrdersComponent implements OnInit {
 	    $(this).parent(".nav").toggleClass("open"); 
 	    $('html, body').animate({ scrollTop: $(this).offset().top - 170 }, 1500 );
     });
-    this.svc.getDataSvc().subscribe( t => {this.DaRR = t} );
-    //console.log(userDashboard.userid);
-    //this.Dsvc.GetUserById(userDashboard.userid).subscribe( t => { this.username = t.userFname} );
+    userDashboard.userid = parseInt(localStorage.getItem('user'));
+    //this.svc.getDataSvc().subscribe( t => {this.DaRR = t} );
+    this.svc.getUserOrders(userDashboard.userid).subscribe( t => {this.u_Ords = t; console.log(t)} );
+  }
+
+  NaviRepo(s:number, t:number){
+    localStorage.setItem('CurOrd',s.toString());
+    localStorage.setItem('ITrack',t.toString());
+    this.rout.navigate(['/user','userTrackRepo']);
   }
 
 }

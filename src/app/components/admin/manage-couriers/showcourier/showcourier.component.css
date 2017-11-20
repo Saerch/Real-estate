@@ -25,10 +25,11 @@
 }
 
 th, td{
+	color:black;
 	text-align: center;
 }
 
 thead{
-    background-color: #f5ab35;
+    background-color: #e8de22;
     color:white;
 }

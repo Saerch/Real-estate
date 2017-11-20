@@ -27,7 +27,7 @@ i{
 }
 
 .form-control, .form-control::placeholder{
-  color:#f5ab35;
+  color:black;
 }
 
 .form-control{
@@ -78,4 +78,16 @@ i{
   text-align:center; 
   padding-left:20px;
   padding-top:10px;
+}
+
+.calclabel{
+  padding:12px 60px;
+  text-align:center;
+  border-radius: 12px;
+}
+
+h5{
+  font:15px Consolas;
+  color: black;
+  line-height: 5px;
 }

@@ -4,6 +4,7 @@ import { NavbarUserService } from '../../../../services/navbar-user.service';
 import { SidebarSuperadminService } from '../../../../services/sidebar-superadmin.service';
 import { SidebarAdminService } from '../../../../services/sidebar-admin.service';
 import { Admin_class } from '../../../../Blueprints/aDmin';
+import { LocalAssets } from '../../../../services/LocalDataService';
 
 @Component({
   selector: 'app-showadmin',
@@ -14,15 +15,20 @@ export class SuperadminShowadminComponent implements OnInit {
 
 Cur_Entry:any={};
 Ad_id="";
+Ad_name="";
 Ad_loc="";
 Ad_arr=[];
 Ad_newPass="";
+Ccontrol=true;
+DDown=[];
+cities=[];
 cur_index:number=0;
 
-constructor(private navbaruser:NavbarUserService,private superadminsidebar:SidebarSuperadminService,private adminsidebar: SidebarAdminService,private svc:DataAdminService){
+constructor(private navbaruser:NavbarUserService,private superadminsidebar:SidebarSuperadminService,private adminsidebar: SidebarAdminService,private svc:DataAdminService, private lsvc:LocalAssets){
 this.navbaruser.hide();
 this.superadminsidebar.show();
 this.adminsidebar.hide();
+lsvc.getCountryDDowns().subscribe( t => {this.DDown = t} );
 }
   
 ngOnInit() {
@@ -42,12 +48,11 @@ Indexer(s:number){
   console.log(s);
   this.cur_index=s;
   this.Cur_Entry=this.Ad_arr[s];
+  this.CtrChange(this.Cur_Entry.adminctry);
+  this.Ccontrol=true;
 }
 
 ReplaceAd(){
-  /*if(this.Ad_newPass!="" && this.Ad_newPass.length>=6){
-    this.Cur_Entry.adminPass = this.Ad_newPass;
-  }*/
   this.svc.UpdateAdmin(this.Cur_Entry, this.Cur_Entry.adminId).subscribe(t => {console.log(t); this.ngOnInit()});
 }
 
@@ -64,6 +69,15 @@ AdminPermit(){
   else{
     console.log("Admin Currently InActive !!");
     this.svc.AdminAccess(this.Cur_Entry.adminId, true).subscribe( t => {console.log(t); this.ngOnInit()} );
+  }
+}
+
+CtrChange(s){
+  this.Ccontrol=false;
+  for(var x=0; x<this.DDown.length;x++){
+    if(s==this.DDown[x].Country){
+      this.cities =  this.DDown[x].Cities;
+    }
   }
 }
 

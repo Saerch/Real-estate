@@ -28,6 +28,7 @@ this.Checker=false;
 this.blocker=false;
 }
   ngOnInit() {
+    adminDashboard.adminId =  parseInt(localStorage.getItem('admin'));
     this.aData.GetAdminById(adminDashboard.adminId).subscribe( t => {this.Darr = t } );
   }
 

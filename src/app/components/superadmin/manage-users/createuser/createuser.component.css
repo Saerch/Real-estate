@@ -24,6 +24,7 @@ input::-webkit-inner-spin-button {
 .panel{
   width:70%;
   margin:auto;
+  margin-top:50px;
   box-shadow: 5px 5px 5px #92aad1;
 }
 
@@ -45,8 +46,8 @@ i{
   color:red;
 }
 
-.form-control, .form-control::placeholder{
-  color:#f5ab35;
+.form-control::placeholder, .form-control{
+  color:black;
 }
 
 #genderbox{
@@ -56,6 +57,10 @@ i{
 
 .form-control{
   text-transform: none;
+}
+
+.form-control:not(select){
+  color:black;
 }
 
 .btn{

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { DataCourierService } from '../../../../services/CourierDataService';
 import { NavbarUserService } from '../../../../services/navbar-user.service';
 import { SidebarSuperadminService } from '../../../../services/sidebar-superadmin.service';
 import { SidebarAdminService } from '../../../../services/sidebar-admin.service';
+import { LocalAssets } from '../../../../services/LocalDataService';
+import { Bookings, Item_groups } from '../../../../Blueprints/Order';
+import { DataCourierService } from '../../../../services/CourierDataService';
 
 @Component({
   selector: 'app-showcourier',
@@ -11,15 +13,13 @@ import { SidebarAdminService } from '../../../../services/sidebar-admin.service'
 })
 export class SuperadminShowcourierComponent implements OnInit {
 
-C_arr=[];
+Ord=[];
 Cid="";
 from="";
 to="";
 id="";
 bdate="";
-rdate="";
-mode="";
-status="";
+moder="";
 
 constructor(private navbaruser:NavbarUserService,private superadminsidebar:SidebarSuperadminService,private adminsidebar: SidebarAdminService,private svc:DataCourierService){
 this.navbaruser.hide();
@@ -27,19 +27,8 @@ this.superadminsidebar.show();
 this.adminsidebar.hide();
 }
  
-ngOnInit() 
-{
-  this.svc.getCorVals().subscribe( t => {this.C_arr=t; this.calcPrice()} )
-}
-
-calcPrice(){
-for(var x=0;x<this.C_arr.length;x++)
-  {
-    for(var y=0;y<this.C_arr[x].Items.length;y++)
-      {
-        this.C_arr[x].Tprice += (this.C_arr[x].Items[y].no*this.C_arr[x].Items[y].ppi);
-      }
-  }
+ngOnInit() {
+  this.svc.getAllOrders().subscribe( t => { this.Ord = t; console.log(t) } );
 }
 
 }

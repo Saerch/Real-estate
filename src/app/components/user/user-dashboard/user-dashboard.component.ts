@@ -29,6 +29,7 @@ export class UserDashboardComponent implements OnInit {
 	    $(this).parent(".nav").toggleClass("open"); 
 	    $('html, body').animate({ scrollTop: $(this).offset().top - 170 }, 1500 );
     });
+    userDashboard.userid = parseInt(localStorage.getItem('user'));
     this.Dsvc.GetUserById(userDashboard.userid).subscribe( t => { this.username = t.userFname} );
   }
 

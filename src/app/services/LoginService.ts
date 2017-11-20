@@ -10,6 +10,7 @@ import { UserLogin, AdminLogin } from '../Blueprints/Login';
 export class LogService{
     private adminCheckUrl="api/adminLogin";
     private userCheckUrl="api/userLogin";
+    private userMailCheckUrl="api/userLoginMail";
 
     constructor(private _http:Http){
 
@@ -29,6 +30,15 @@ export class LogService{
         let opts = new RequestOptions({headers : headers});
   
         return this._http.post(this.userCheckUrl, JSON.stringify(user), opts)
+                .map( (res:Response) => res )
+                .catch(this.handleError);
+    }
+
+    userMailCheck(user:UserLogin):Observable<Response>{
+        let headers = new Headers({'Content-Type':'application/json'});
+        let opts = new RequestOptions({headers : headers});
+  
+        return this._http.post(this.userMailCheckUrl, JSON.stringify(user), opts)
                 .map( (res:Response) => res )
                 .catch(this.handleError);
     }

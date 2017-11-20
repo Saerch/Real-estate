@@ -12,7 +12,7 @@
     {
         "Country":"UK",
         "Ccode":44,
-        "Cities":["London","Bristol","Leicester","Cardiff","Machester","NewCastle","EdinBurgh","Dundee","Belfast","Liverpool"]
+        "Cities":["London","Bristol","Leicester","Cardiff","Manchester","NewCastle","EdinBurgh","Dundee","Belfast","Liverpool"]
     },
     {
         "Country":"Canada",

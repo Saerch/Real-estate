@@ -1,13 +1,15 @@
 <div class="superadmin">
   <div *ngIf="nextFlag" class="panel panel-primary">
-    <div class="panel-heading">User Registration</div>
+    <div class="panel-heading">User Registration
+      <button type="button" (click)="Closer()" class="close text-right" style="width:fit-content; color:black">&times;</button>
+    </div>
     <form #userForm="ngForm" (ngSubmit)="sGetUser(userForm.value)">
     <div class="panel-body">
         <div class="row text-center">
           <div class="col-md-6">
             <div class="input-group">
                   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                  <input type="text" class="form-control has-success has-error has-feedback" placeholder="First Name *" required ngModel minlength="2" pattern="[a-zA-Z][a-zA-Z]+" title="Must contain only Alphabets" name="fname" maxlength="19"  #fn="ngModel">
+                  <input type="text" class="form-control has-success has-error has-feedback alpha_bet" placeholder="First Name *" required ngModel minlength="2" pattern="[a-zA-Z][a-zA-Z]+" title="Must contain only Alphabets" name="fname" maxlength="19"  #fn="ngModel">
                   <span *ngIf="fn.dirty || fn.touched">
                     <span *ngIf="fn.errors" class="glyphicon glyphicon-remove form-control-feedback"></span>
                     <span *ngIf="!fn.errors" class="glyphicon glyphicon-ok form-control-feedback"></span>              
@@ -17,7 +19,7 @@
           <div class="col-md-6">
             <div class="input-group">
                   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                  <input type="text" class="form-control has-success has-error has-feedback" placeholder="Last Name *" required ngModel maxlength="19" minlength="2" pattern="[a-zA-Z][a-zA-Z]+" title="Must contain only Alphabets" name="lname" #ln="ngModel">
+                  <input type="text" class="form-control has-success has-error has-feedback alpha_bet" placeholder="Last Name *" required ngModel maxlength="19" minlength="2" pattern="[a-zA-Z][a-zA-Z]+" title="Must contain only Alphabets" name="lname" #ln="ngModel">
                   <span *ngIf="ln.dirty || ln.touched">
                     <span *ngIf="ln.errors" class="glyphicon glyphicon-remove form-control-feedback"></span>
                     <span *ngIf="!ln.errors" class="glyphicon glyphicon-ok form-control-feedback"></span>              
@@ -71,18 +73,17 @@
           <div class="col-md-6">
               <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                  <input type="email" class="form-control has-success has-error has-feedback" placeholder="Email *" required name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" minlength="6" maxlength="30" title="Eg:- abc123@domain.com" ngModel #mail="ngModel">
+                  <input type="email" class="form-control has-success has-error has-feedback" placeholder="Email *" required name="email" pattern="[a-zA-Z0-9!#$%&'*+-/=?^_`{|}~.]+@[a-zA-Z0-9.-]+\.[a-z]{2,3}$" minlength="6" maxlength="30" title="Eg:- abc123@domain.com" ngModel #mail="ngModel">
                   <span *ngIf="mail.dirty || mail.touched">
                     <span *ngIf="mail.errors" class="glyphicon glyphicon-remove form-control-feedback"></span>
                     <span *ngIf="!mail.errors" class="glyphicon glyphicon-ok form-control-feedback"></span>              
                   </span>
               </div>
           </div>
-          <div class="col-md-6 text-left">
+          <div class="col-md-6">
             <div class="input-group">
-                  <input [disabled]="Ccontrol" type="number" class="form-control" style="width:5em" [(ngModel)]="Ccode" required name="mcc" min="1" max="999" ngModel>
-                  <span style="padding:5px; border:none" class="input-group-addon"></span>
-                  <input type="text" class="form-control has-success has-error has-feedback" placeholder="Mobile *" required name="mob" pattern="[0-9]{10}" minlength="10" maxlength="10" title="A Valid 10 Digit Number" ngModel #mob="ngModel">
+                  <span class="input-group-addon" style="padding:0"><input type="number" class="form-control" style="width:5em" [(ngModel)]="Ccode" required name="mcc" min="1" max="999" ngModel disabled></span>
+                  <input type="text" class="form-control has-success has-error has-feedback moby" placeholder="Mobile *" required name="mob" pattern="[0-9]{10}" minlength="10" maxlength="10" title="A Valid 10 Digit Number" ngModel #mob="ngModel">
                   <span *ngIf="mob.dirty || mob.touched">
                     <span *ngIf="mob.errors" class="glyphicon glyphicon-remove form-control-feedback"></span>
                     <span *ngIf="!mob.errors" class="glyphicon glyphicon-ok form-control-feedback"></span>              
@@ -118,8 +119,7 @@
         <div class="row" style="border-bottom: 1px solid #ddd">
           <div id="eyeball" class="col-md-12"><button type="button" class="btn btn-primary"><i class="fa fa-eye" aria-hidden="true"></i><a style="cursor:pointer" (click)="ShoPass()"> Show Password</a></button></div><br><br>
           <div class="col-md-5" style="color: #337ab7">* Fields are mandatory</div>
-          <div class="col-md-2"></div>
-          <div class="col-md-5" style="color: #337ab7; text-align:right;"><a style="cursor:pointer" (click)="LogMe()">Already Registered ?</a></div><br>
+          <div class="col-md-2"></div><br>
           <div class="col-md-12" style="color: #337ab7">** Minimum 8 Characters long with at least 1 Uppercase, 1 Lowercase & 1 digit</div><br><br>
         </div>
 

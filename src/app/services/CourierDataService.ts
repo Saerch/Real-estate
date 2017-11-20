@@ -49,6 +49,24 @@ export class DataCourierService
         .catch(this.handleError);
     }
 
+    getAllOrders():Observable<Bookings[]>{
+        return this._http.get("api/getAllOrders")
+                .map( (res:Response) => <Bookings[]>res.json() )
+                .catch(this.handleError);
+    }
+
+    getUserCity(id:number):Observable<Response>{
+        return this._http.get("api/getUserCity/"+id.toString())
+                .map( (res:Response) => res)
+                .catch(this.handleError);
+    }
+
+    getTrackData(id:number):Observable<Response>{
+        return this._http.get("api/getTrackoObj/"+id.toString())
+                .map( (res:Response) => res)
+                .catch( this.handleError );
+    }
+
     private extractData(res: Response) {
     let body = res.json();
             return body.data || {};

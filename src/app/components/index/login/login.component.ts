@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
   }
   
   RegDirec(){
-    this.rt.navigate(['user','uregister']);
+    this.rt.navigate(['uregister']);
   }
 
   LoginSub(s){
@@ -60,12 +60,11 @@ export class LoginComponent implements OnInit {
         {
           if(t.text()=="AdminFound"){
             localStorage.setItem('admin',JSON.stringify(parseInt(s.id_name)));
-
             this.Asc.GetAdminById(parseInt(s.id_name)).subscribe( t =>
              { 
               if(t.active){
-                adminDashboard.adminId =  parseInt(s.id_name);
-                adminDashboard.adminCity = t.admincity;
+                adminDashboard.adminId =  parseInt(localStorage.getItem('admin'));
+                localStorage.setItem('adminCity',t.admincity);
                 this.rt.navigate(['admin']);
               }else{
                   this.blocker=true;
@@ -81,7 +80,7 @@ export class LoginComponent implements OnInit {
         }
       );
     }else if(s.id_name.charAt(0)=="2"){
-      this.usObj = new UserLogin(parseInt(s.id_name), s.pass);
+      this.usObj = new UserLogin(parseInt(s.id_name), s.pass,"");
       this.svc.userCheck(this.usObj).subscribe( t => 
         {
           if(t.text()=="UserFound"){
@@ -90,14 +89,38 @@ export class LoginComponent implements OnInit {
               this.Usvc.GetUserById(parseInt(s.id_name)).subscribe( t => 
               {
                 if(t.ustat){
-                  userDashboard.userid = parseInt(s.id_name); 
+                  userDashboard.userid = parseInt(localStorage.getItem('user')); 
                   this.rt.navigate(['user']);
                 }else{
                   this.blocker=true;
                 }
               } 
             );
-              
+          }
+        });
+      }else if( ( (<string>s.id_name).charAt(0)>='a' && (<string>s.id_name).charAt(0)<'z' ) || ((<string>s.id_name).charAt(0)>='A' && (<string>s.id_name).charAt(0)<='Z')){
+            this.usObj = new UserLogin(0, s.pass, s.id_name);
+            //console.log(this.usObj);
+            this.svc.userMailCheck(this.usObj).subscribe( t =>
+              {
+                if(parseInt(t.text())!=0 && t.text()!="Nfound"){
+                  localStorage.setItem('user',JSON.stringify(parseInt(t.text())));
+
+                  this.Usvc.GetUserById(parseInt(t.text())).subscribe( t =>
+                    {
+                      if(t.ustat){
+                        userDashboard.userid = parseInt(localStorage.getItem('user')); 
+                        this.rt.navigate(['user']);
+                      }
+                      else{
+                        this.blocker=true;
+                      }
+                    }
+                  );
+                }
+              }
+
+            );
           }else{
             this.trials--;
             this.adChecker=false;
@@ -105,8 +128,8 @@ export class LoginComponent implements OnInit {
             this.Checker=true;
           }
         }
-      );
-    }
-  }
 
+        Closer(){
+          this.rt.navigate(['']);
+      }
 }

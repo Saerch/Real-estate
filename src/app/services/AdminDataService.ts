@@ -64,6 +64,12 @@ export class DataAdminService
             .map((res:Response) => res)
            .catch(this.handleError);
     }
+
+    getCityUsers(city:string):Observable<any[]>{
+        return this._http.get("api/User_City/"+city)
+                .map( (res:Response) => <any[]>res.json() )
+                .catch(this.handleError);
+    }
   
     private extractData(res: Response) {
     let body = res.json();

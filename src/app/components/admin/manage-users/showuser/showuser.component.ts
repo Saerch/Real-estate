@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NavbarUserService } from '../../../../services/navbar-user.service';
 import { SidebarSuperadminService } from '../../../../services/sidebar-superadmin.service';
 import { SidebarAdminService } from '../../../../services/sidebar-admin.service';
+import {adminDashboard} from '../../../../services/AdminDashService';
+import { DataAdminService } from '../../../../services/AdminDataService';
 
 @Component({
   selector: 'app-showuser',
@@ -10,14 +12,19 @@ import { SidebarAdminService } from '../../../../services/sidebar-admin.service'
 })
 export class AdminShowuserComponent implements OnInit {
 
-constructor(private navbaruser:NavbarUserService,private superadminsidebar:SidebarSuperadminService,private adminsidebar: SidebarAdminService){
-this.navbaruser.hide();
-this.superadminsidebar.hide();
-this.adminsidebar.show();
-}
+UsArr=[];
+
+  constructor(private navbaruser:NavbarUserService,private superadminsidebar:SidebarSuperadminService,private adminsidebar: SidebarAdminService, private AdSvc:DataAdminService){
+      this.navbaruser.hide();
+      this.superadminsidebar.hide();
+      this.adminsidebar.show();
+      adminDashboard.adminId =  parseInt(localStorage.getItem('admin'));
+      adminDashboard.adminCity = localStorage.getItem('adminCity');
+  }
 
  
-ngOnInit() {
-}
+  ngOnInit() {
+    this.AdSvc.getCityUsers(adminDashboard.adminCity).subscribe( t => {this.UsArr = t; console.log(t)} );
+  }
 
 }

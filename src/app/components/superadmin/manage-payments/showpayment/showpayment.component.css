@@ -31,7 +31,21 @@ thead{
     color:white;
 }
 
-.badge{
-	background-color: #4fb735;
-	padding:5px 10px;
+
+i{
+	font-size:12px;
+	color:black;
+}
+
+.fa-search{
+	color:#f5ab35;
+	font-size: 15px;
+}
+
+thead tr th, tbody tr td{
+	text-align: center;
+}
+
+td{
+	color:black;
 }

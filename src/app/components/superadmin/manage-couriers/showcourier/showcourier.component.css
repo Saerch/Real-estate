@@ -22,8 +22,8 @@
 	color:black;
 }
 
-.form-control::placeholder , i{
-	font-size: 10px;
+.form-control::placeholder, select.formcontrol{
+	font-size: 15px;
 	color:#f5ab35;
 }
 
@@ -45,4 +45,26 @@ thead{
 .input-group span{
 	padding-left:4px;
 	padding-right:4px;
+}
+
+i{
+	font-size:18px;
+	color:black;
+}
+
+.fa-search{
+	color:#f5ab35;
+	font-size: 15px;
+}
+
+thead tr th, tbody tr td{
+	text-align: center;
+}
+
+.modal{
+	text-align: left;
+}
+
+td{
+	color:black;
 }

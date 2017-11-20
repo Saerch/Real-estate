@@ -13,4 +13,5 @@ navbarVisible: boolean;
 
   toggle() { this.navbarVisible = !this.navbarVisible; }
   
+  static trackId=0;
 }

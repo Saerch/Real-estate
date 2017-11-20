@@ -1,17 +1,20 @@
 <!--  SiGN in Form  -->
-<div class="container" style="margin-top:120px">
+<div class="container-fluid">
+  <div class="container" style="margin-top:120px">
   <div class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 loginbox">
     <div class="panel panel-info"> 
       
       <div class="panel-heading"> 
-        <div class="panel-title"> Sign In </div> 
+        <div class="panel-title"> Sign In 
+          <button type="button" class="close text-right" (click)="Closer()" style="width:fit-content; color:black">&times;</button>
+        </div> 
       </div> 
         
       <div class="panel-body panel-pad">   
         <form #loginForm="ngForm" (ngSubmit)="LoginSub(loginForm.value)" class="form-horizontal" role="form">
           <div class="input-group margT25"> 
           <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input type="text" class="form-control" name="id_name" placeholder="User ID " required ngModel> 
+            <input type="text" class="form-control" name="id_name" placeholder="ID / Email" required ngModel> 
           </div>
               
           <div class="input-group margT25"> 
@@ -60,11 +63,11 @@
     </div> 
   </div>
 </div>
-
+</div>
 
 
 <!--  Footer  -->
-<div style="margin-top:50px">
+<div>
 <footer class="containerAbc nav-folderized">
     <div class="row">
         <div class="col-md-2 ftr__list nav">
@@ -129,4 +132,3 @@
     </div><br><br><br>
 </footer>
 </div>
-  

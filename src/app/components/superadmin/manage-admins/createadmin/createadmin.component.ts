@@ -7,7 +7,6 @@ import { Admin_class } from '../../../../Blueprints/aDmin';
 import { Router } from '@angular/router';
 import { LocalAssets } from '../../../../services/LocalDataService';
 
-
 @Component({
   selector: 'app-createadmin',
   templateUrl: './createadmin.component.html',
@@ -16,6 +15,8 @@ import { LocalAssets } from '../../../../services/LocalDataService';
 
 export class SuperadminCreateadminComponent implements OnInit {
 
+cpassword="";
+password="";
 Ccontrol=true;
 adNew:Admin_class;
 DDown=[];
@@ -36,14 +37,11 @@ ngOnInit(){
 
 AdminData(s){
   this.adNew = new Admin_class(s.name, s.pass, s.city, s.country, true);
-  //console.log(this.adNew);
   this.svc.postAdmin(this.adNew).subscribe( t => { console.log(t)} );
   this.successFlag=true;
-  //console.log(s);
 }
 
 CtrChange(s){
-  //console.log(s);
   this.Ccontrol=false;
   for(var x=0; x<this.DDown.length;x++){
     if(s==this.DDown[x].Country){
@@ -54,10 +52,33 @@ CtrChange(s){
 
 Back(){
   this.successFlag=false;
+  this.cpassword="";
+  this.password="";
+}
+
+Closer(){
+  this.cpassword="";
+  this.password="";
+  this.rt.navigate(['superadmin']);
 }
 
 adList(){
+  this.cpassword="";
+  this.password="";
   this.rt.navigate(['superadmin','showadmin']);
+}
+
+ShoPass(){
+ var x = <HTMLInputElement>document.getElementById("passo1");
+ var y = <HTMLInputElement>document.getElementById("passo2");
+ 
+ if(x.type == "password"){
+   x.type = "text";
+   y.type = "text";
+ }else{
+   x.type = "password";
+   y.type = "password";  
+ }
 }
 
 }

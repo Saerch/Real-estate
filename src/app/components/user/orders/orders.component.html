@@ -15,14 +15,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let i of DaRR; let j= index">
+                        <tr *ngFor="let i of u_Ords; let j= index">
                             <td scope="row">{{j+1}}</td>
-                            <td>{{i.OrderId}}</td>
-                            <td>{{i.OrderDate}}</td>
-                            <td>Rs {{i.OrderAmount}}</td>
-                            <td><button type="button" class="btn btn-info statbox">{{i.Status}}</button></td>
-                            <td>{{i.TrackId}}</td>
-                            <td><button type="button" class="btn btn-warning"><i class="fa-list-alt"></i> Full Report</button></td>
+                            <td>{{i.ordId}}</td>
+                            <td>{{i.ordDate}}</td>
+                            <td>Rs {{i.ordPrice}}</td>
+                            <td><button type="button" class="btn btn-info statbox">{{i.ordStatus}}</button></td>
+                            <td>{{i.ordTrackid}}</td>
+                            <td><button type="button" class="btn btn-warning" (click)="NaviRepo(i.ordId, i.ordTrackid)"><i class="fa-list-alt"></i> Full Report</button></td>
                         </tr>
                     </tbody>
                 </table>

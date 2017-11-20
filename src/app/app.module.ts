@@ -25,7 +25,7 @@ import {LocalAssets} from './services/LocalDataService';
 /*  PIPES  */
 
 //Admin Pipe
-import { adminPipe,userPipe } from './pipes/pipeSadmin';
+import { adminPipe,userPipe , bookPipe, pymentPipe} from './pipes/pipeSAdmin';
 
 
 /*  COMPONENTS  */
@@ -71,12 +71,13 @@ import { OrdersComponent } from './components/user/orders/orders.component';
 import { CbookingComponent } from './components/user/cbooking/cbooking.component';
 import { ProfileComponent } from './components/user/profile/profile.component';
 import { PasschangeComponent } from './components/user/passchange/passchange.component';
+import { TrackreportComponent } from './components/user/trackreport/trackreport.component';
 
 @NgModule({
     declarations: 
         [           AppComponent,
                 //Pipes
-                    userPipe,adminPipe,
+                    userPipe,adminPipe,bookPipe,pymentPipe,
                 //Index
                     HomeComponent,
                     AboutUsComponent,
@@ -109,7 +110,12 @@ import { PasschangeComponent } from './components/user/passchange/passchange.com
                     SidebarSuperadminComponent,
 
                 //User
-                    UserDashboardComponent, OrdersComponent, CbookingComponent, ProfileComponent, PasschangeComponent
+                    UserDashboardComponent, 
+                    OrdersComponent, 
+                    CbookingComponent, 
+                    ProfileComponent, 
+                    PasschangeComponent, 
+                    TrackreportComponent
         ],
   
     imports: 

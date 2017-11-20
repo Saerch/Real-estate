@@ -1,24 +1,22 @@
-import { Component, OnInit , OnDestroy} from '@angular/core';
-import { NavbarUserService } from '../../../services/navbar-user.service';
-import { SidebarSuperadminService } from '../../../services/sidebar-superadmin.service';
-import { SidebarAdminService } from '../../../services/sidebar-admin.service';
-import {DataCourierService} from '../../../services/CourierDataService';
-import { Router } from '@angular/router';
-
-declare var $: any;
+import { Component, OnInit } from '@angular/core';
+import { DataUserService } from '../../../services/UserDataService';
+import { userDashboard } from '../../../services/UserDashService';
+import { Router } from '@angular/router'; 
 
 @Component({
-  selector: 'app-qtrack',
-  templateUrl: './qtrack.component.html',
-  styleUrls: ['./qtrack.component.css']
+  selector: 'app-trackreport',
+  templateUrl: './trackreport.component.html',
+  styleUrls: ['./trackreport.component.css']
 })
-export class QtrackComponent implements OnInit, OnDestroy {
+export class TrackreportComponent implements OnInit {
 
-TrackObj:any={};
-trId=0;
-x=0;
+  TrackObj:any={};
+  OrdObj:any={};
+  trId=0;
+  OrdId=0;
+  x=0;
 
-States:any[]=[
+  States:any[]=[
   {
     Prog:"Booked",
     viz:false,
@@ -66,30 +64,34 @@ States:any[]=[
   } 
 ]
 
-constructor(private navbaruser:NavbarUserService,private superadminsidebar:SidebarSuperadminService,private adminsidebar: SidebarAdminService, private Tsc:DataCourierService, private router:Router){
-   this.navbaruser.show();
-   this.superadminsidebar.hide();
-   this.adminsidebar.hide();
-   NavbarUserService.trackId = parseInt(localStorage.getItem('Itrack'));
-}
+  constructor(private svc:userDashboard, private rout:Router, private Dsvc:DataUserService) { 
+    userDashboard.userid = parseInt(localStorage.getItem('user'));
+    userDashboard.orderid = parseInt(localStorage.getItem('CurOrd'));
+    this.OrdId = parseInt(localStorage.getItem('CurOrd'));
+    userDashboard.trackid = parseInt(localStorage.getItem('ITrack'));
+  }
+
   ngOnInit() {
-    $(".nav-folderized h4").click(function(){
-	    $(this).parent(".nav").toggleClass("open"); 
-	    $('html, body').animate({ scrollTop: $(this).offset().top - 170 }, 1500 );
-    });
-    this.Tsc.getTrackData(NavbarUserService.trackId).subscribe( t => 
+    this.svc.getTrackData(userDashboard.trackid).subscribe( t => 
       { 
         this.TrackObj = JSON.parse(t.text());
-        this.trId = NavbarUserService.trackId; 
+        this.trId = userDashboard.trackid; 
         this.Moder(this.TrackObj.mode) ;
         this.Stat_Control(this.TrackObj.curStatus); 
         this.progressJs();
       } 
     );
+
+    this.svc.getTrackOrder(this.OrdId).subscribe( t =>
+      {
+        this.OrdObj = JSON.parse(t.text());
+      }
+     );
   }
 
   ngOnDestroy(){
-    localStorage.removeItem('Itrack');
+    localStorage.removeItem('CurOrd');
+    localStorage.removeItem('ITrack');
   }
 
   progressJs(){
@@ -121,10 +123,4 @@ constructor(private navbaruser:NavbarUserService,private superadminsidebar:Sideb
       }
     }
   }
-
-  Closer(){
-    this.router.navigate(['']);
-  }
-
 }
-

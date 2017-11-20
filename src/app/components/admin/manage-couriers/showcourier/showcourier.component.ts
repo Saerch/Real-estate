@@ -15,6 +15,8 @@ export class AdminShowcourierComponent implements OnInit {
 Darr=[];  
 cur_stat="Picked";
 prev_stat="Booked";
+Cur_index=0;
+Cur_Id=0;
 nlimit:boolean[]=[];
 plimit:boolean[]=[];
 
@@ -22,9 +24,12 @@ constructor(private navbaruser:NavbarUserService,private superadminsidebar:Sideb
 this.navbaruser.hide();
 this.superadminsidebar.hide();
 this.adminsidebar.show();
+this.Cur_index=0;
+this.Cur_Id=0;
 }
 
   ngOnInit() {
+    adminDashboard.adminId =  parseInt(localStorage.getItem('admin'));
     this.Dcvs.getAdminCors(adminDashboard.adminId).subscribe( t => {
       this.Darr = t;
       this.Limit_Init();
@@ -32,28 +37,26 @@ this.adminsidebar.show();
   );
   }
 
-  StatChange(s:number, a:number){
-    this.plimit[s]=false;
-    this.Darr[s].prevStatus = this.Darr[s].curStatus;
-    this.Darr[s].curStatus = States[ States[this.Darr[s].curStatus]+1 ];
-    if(this.Darr[s].curStatus=="Delivered"){
-      this.nlimit[s]=true;
+  StatChange(){
+    this.plimit[this.Cur_index]=false;
+    this.Darr[this.Cur_index].prevStatus = this.Darr[this.Cur_index].curStatus;
+    this.Darr[this.Cur_index].curStatus = States[ States[this.Darr[this.Cur_index].curStatus]+1 ];
+    if(this.Darr[this.Cur_index].curStatus=="Delivered"){
+      this.nlimit[this.Cur_index]=true;
     }
-    this.Dcvs.OrderStatusChange(a, this.Darr[s].prevStatus, this.Darr[s].curStatus).subscribe( t=>console.log(t) );
+    this.Dcvs.OrderStatusChange(this.Cur_Id, this.Darr[this.Cur_index].prevStatus, this.Darr[this.Cur_index].curStatus).subscribe( t=>console.log(t) );
     alert("Status Changed");
-    this.ngOnInit();
   }  
 
-  PStatChange(s:number, a:number){
-    this.nlimit[s]=false;
-    this.Darr[s].curStatus = this.Darr[s].prevStatus;
-    this.Darr[s].prevStatus = States[<number><any>States [this.Darr[s].prevStatus]-1];
-    if(this.Darr[s].prevStatus=="Booked"){
-      this.plimit[s]=true;
+  PStatChange(){
+    this.nlimit[this.Cur_index]=false;
+    this.Darr[this.Cur_index].curStatus = this.Darr[this.Cur_index].prevStatus;
+    this.Darr[this.Cur_index].prevStatus = States[<number><any>States [this.Darr[this.Cur_index].prevStatus]-1];
+    if(this.Darr[this.Cur_index].prevStatus=="Booked"){
+      this.plimit[this.Cur_index]=true;
     }
-    this.Dcvs.OrderStatusChange(a, this.Darr[s].prevStatus, this.Darr[s].curStatus).subscribe( t=>console.log(t) );
+    this.Dcvs.OrderStatusChange(this.Cur_Id, this.Darr[this.Cur_index].prevStatus, this.Darr[this.Cur_index].curStatus).subscribe( t=>console.log(t) );
     alert("Status Changed");
-    this.ngOnInit();
   }
  
   Limit_Init(){
@@ -72,6 +75,16 @@ this.adminsidebar.show();
         this.nlimit[x]=false;
       }
     }
+  }
+
+  nClicko(s:number, t:number){
+    this.Cur_index=s;
+    this.Cur_Id=t;
+  }
+
+  pClicko(s:number, t:number){
+    this.Cur_index=s;
+    this.Cur_Id=t;
   }
 }
 
