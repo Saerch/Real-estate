@@ -1,134 +1,96 @@
-/* Core Components  */
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpModule } from "@angular/http";
-import { routing } from './app.routing';
-import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
-import { ChartsModule } from 'ng2-charts';
+import {FormsModule} from '@angular/forms';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
+import {RouterModule,Routes} from '@angular/router';
+import { HomeComponent } from './home/home.component';
+import { AboutComponent } from './about/about.component';
+import { MyprofileComponent } from './myprofile/myprofile.component';
+import { SubmitpropertyComponent } from './submitproperty/submitproperty.component';
+import { PricingtableComponent } from './pricingtable/pricingtable.component';
+import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
+import {MessageComponent}from'./message/message.component';
+import {SettingComponent}from'./setting/setting.component';
+import {WishlistComponent}from'./wishlist/wishlist.component';
+import {NotificationComponent}from'./notification/notification.component';
+import {PasswordComponent}from'./password/password.component';
+import { ContactComponent } from './contact/contact.component';
+import {UserDashboardComponent} from './user-dashboard/user-dashboard.component'
+import {ProfileComponent} from './profile/profile.component';
+import{HttpModule, Response} from '@angular/http';
+import { MypropertyComponent } from './myproperty/myproperty.component';
+import {ListComponent} from './list/list.component';
+import {List2Component} from './list2/list2.component';
+import {List3Component} from './list3/list3.component';
+import { List4Component } from './list4/list4.component';
+import { List5Component } from './list5/list5.component';
+import { PaymentComponent } from './payment/payment.component';
+import { APP_BASE_HREF } from '@angular/common';
 
-
-/*  SERVICES  */
-import { NavbarUserService } from './services/navbar-user.service';
-import { SidebarAdminService } from './services/sidebar-admin.service';
-import { SidebarSuperadminService } from './services/sidebar-superadmin.service';
-import { DataCourierService } from './services/CourierDataService';
-import { DataAdminService } from './services/AdminDataService';
-import { DataPaymentService } from './services/PymtDataService';
-import { DataUserService } from './services/UserDataService';
-import {LogService} from './services/LoginService';
-import {userDashboard} from './services/UserDashService';
-import { adminDashboard} from './services/AdminDashService';
-import {LocalAssets} from './services/LocalDataService';
-
-/*  PIPES  */
-
-//Admin Pipe
-import { adminPipe,userPipe , bookPipe, pymentPipe} from './pipes/pipeSadmin';
-
-
-/*  COMPONENTS  */
-
-/*  Index Components  */
-
-import { HomeComponent } from './components/index/home/home.component';
-import { AboutUsComponent } from './components/index/about-us/about-us.component';
-import { ErrorComponent } from './components/index/error/error.component';
-import { FaqComponent } from './components/index/faq/faq.component';
-import { NavbarComponent } from './components/index/navbar/navbar.component';
-import { ContactUsComponent } from './components/index/contact-us/contact-us.component';
-import { LoginComponent } from './components/index/login/login.component';
-import { RegisterComponent } from './components/index/register/register.component';
-import { QtrackComponent } from './components/index/qtrack/qtrack.component';
-
-/*  Admin Components  */
-
-import { DashboardAdminComponent } from './components/admin/admin-dashboard/admin-dashboard.component';
-import { AdminAddcourierComponent } from './components/admin/manage-couriers/addcourier/addcourier.component';
-import { AdminShowcourierComponent } from './components/admin/manage-couriers/showcourier/showcourier.component';
-import { AdminCreateuserComponent } from './components/admin/manage-users/createuser/createuser.component';
-import { AdminShowuserComponent } from './components/admin/manage-users/showuser/showuser.component';
-import { SidebarAdminComponent } from './components/admin/admin-sidebar/admin-sidebar.component';
-import { AdminPassComponent } from './components/admin/admin-pass/admin-pass.component';
-
-/*  Superadmin Components  */
-
-import { DashboardSuperadminComponent } from './components/superadmin/superadmin-dashboard/superadmin-dashboard.component';
-import { SuperadminCreateadminComponent } from './components/superadmin/manage-admins/createadmin/createadmin.component';
-import { SuperadminShowadminComponent } from './components/superadmin/manage-admins/showadmin/showadmin.component';
-import { SuperadminCreateuserComponent } from './components/superadmin/manage-users/createuser/createuser.component';
-import { SuperadminShowuserComponent } from './components/superadmin/manage-users/showuser/showuser.component';
-import { SuperadminAddcourierComponent } from './components/superadmin/manage-couriers/addcourier/addcourier.component';
-import { SuperadminShowcourierComponent } from './components/superadmin/manage-couriers/showcourier/showcourier.component';
-import { SuperadminShowpaymentComponent } from './components/superadmin/manage-payments/showpayment/showpayment.component';
-import { SidebarSuperadminComponent } from './components/superadmin/superadmin-sidebar/superadmin-sidebar.component';
-
-
-/* User Components */
-import { UserDashboardComponent } from './components/user/user-dashboard/user-dashboard.component';
-import { OrdersComponent } from './components/user/orders/orders.component';
-import { CbookingComponent } from './components/user/cbooking/cbooking.component';
-import { ProfileComponent } from './components/user/profile/profile.component';
-import { PasschangeComponent } from './components/user/passchange/passchange.component';
-import { TrackreportComponent } from './components/user/trackreport/trackreport.component';
+const appRoutes: Routes = [
+{path: '', component:HomeComponent},
+{path: 'Login', component: LoginComponent },
+{path: 'login/:id', component: LoginComponent },
+{path: 'Signup', component: SignupComponent },
+{path: 'Home',component:HomeComponent},
+{path:'About',component:AboutComponent},
+{path:'seller/:id',component:MyprofileComponent},
+{path:'Submit/:id',component:SubmitpropertyComponent},
+{path:'Pricing',component:PricingtableComponent},
+{path:'Forgetpassword',component:ForgetpasswordComponent},
+{path:'message/:id',component:MessageComponent},
+{path:'wishlist/:id',component:WishlistComponent},
+{path:'notification/:id',component:NotificationComponent},
+{path:'password/:id',component:PasswordComponent},
+{path:'contact',component:ContactComponent},
+{path:'buyer/:id',component:UserDashboardComponent},
+{path:'profile/:id',component:ProfileComponent},
+{path:'myproperty/:id',component:MypropertyComponent},
+{path:'List',component:ListComponent},
+{path:'List2',component:List2Component},
+{path:'List3',component:List3Component},
+{path:'List4',component:List4Component},
+{path:'List5',component:List5Component},
+{path:'payment',component:PaymentComponent}
+];
 
 @NgModule({
-    declarations: 
-        [           AppComponent,
-                //Pipes
-                    userPipe,adminPipe,bookPipe,pymentPipe,
-                //Index
-                    HomeComponent,
-                    AboutUsComponent,
-                    ErrorComponent,
-                    FaqComponent,
-                    NavbarComponent,
-                    ContactUsComponent,
-                    LoginComponent,
-                    RegisterComponent,
-                    QtrackComponent,
-                
-                //Admin
-                    DashboardAdminComponent,
-                    AdminAddcourierComponent,
-                    AdminShowcourierComponent ,
-                    AdminCreateuserComponent,
-                    AdminShowuserComponent,
-                    SidebarAdminComponent,
-                    AdminPassComponent,
-
-                //Superadmin
-                    DashboardSuperadminComponent,
-                    SuperadminCreateadminComponent,
-                    SuperadminShowadminComponent,
-                    SuperadminCreateuserComponent,
-                    SuperadminShowuserComponent,
-                    SuperadminAddcourierComponent,
-                    SuperadminShowcourierComponent,
-                    SuperadminShowpaymentComponent,
-                    SidebarSuperadminComponent,
-
-                //User
-                    UserDashboardComponent, 
-                    OrdersComponent, 
-                    CbookingComponent, 
-                    ProfileComponent, 
-                    PasschangeComponent, 
-                    TrackreportComponent
-        ],
-  
-    imports: 
-        [BrowserModule,HttpModule,routing,RouterModule,ChartsModule,FormsModule],
-
-    /* Global Services */
-    providers:
-        [
-            NavbarUserService,SidebarAdminService,SidebarSuperadminService,
-            DataAdminService,DataPaymentService, DataCourierService, DataUserService,
-            LogService, userDashboard, LocalAssets
-        ],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    SignupComponent,
+    HomeComponent,
+    AboutComponent,
+    MyprofileComponent,
+    SubmitpropertyComponent,
+    PricingtableComponent,
+    ForgetpasswordComponent,
+    WishlistComponent,
+    MessageComponent,
+    NotificationComponent,
+    SettingComponent,
+    PasswordComponent,
+    ContactComponent, 
+    UserDashboardComponent,
+    ProfileComponent,
+    MypropertyComponent,
+    ListComponent,
+    List2Component,
+    List3Component,
+    List4Component,
+    List5Component,
+    PaymentComponent
     
-    bootstrap: [AppComponent]
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,HttpModule,
+    RouterModule.forRoot(appRoutes),
+  ],
+  providers: [ {provide: APP_BASE_HREF, useValue: '/'} ],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

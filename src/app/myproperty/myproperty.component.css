@@ -1,0 +1,7 @@
+table,th,tr,td{
+    border:2px black solid;
+    text-align: center
+}
+td:hover{
+    color:grey;
+}

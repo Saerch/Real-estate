@@ -1,0 +1,187 @@
+<div class="jumbotron">
+    <h2> My Properties</h2>
+    <hr>
+  
+    <table>
+      <tr>
+        <th>S. No.</th>
+        <th>Property Title</th>
+        <th>Property Status</th>
+        <th>Property Type</th>
+        <th>Price</th>
+        <th>Area(in sqft)</th>
+        <th>Rooms</th>
+        <th>Bathroom</th>
+        <th>Address</th>
+        <th>Postal Code</th>
+        <th>Detail</th>
+        <th>Parking</th>
+        <th>Air Coditioner</th>
+        <th>Places to sit</th>
+        <th>Swimming Pool</th>
+        <th>Laundry</th>
+        <th>Window Covering</th>
+        <th>Central Heating</th>
+        <th>Alarm</th>
+        <th>Gym</th>
+        <th>Owner's Name</th>
+        <th>Owner's Email</th>
+        <th>Owner's Number</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+      <tr *ngFor="let i of iproperty; let j = index">
+        <td>{{j+1}}</td>
+        <td>{{i.title}}</td>
+        <td>{{i.propStatus}}</td>
+        <td>{{i.type}}</td>
+        <td>{{i.price}}</td>
+        <td>{{i.area}}</td>
+        <td>{{i.rooms}}</td>
+        <td>{{i.bathroom}}</td>
+        <td>{{i.address}}</td>
+        <td>{{i.postalcode}}</td>
+        <td>{{i.info}}</td>
+        <td>{{i.parking}}</td>
+        <td>{{i.ac}}</td>
+        <td>{{i.sit}}</td>
+        <td>{{i.pool}}</td>
+        <td>{{i.laundry}}</td>
+        <td>{{i.window}}</td>
+        <td>{{i.heating}}</td>
+        <td>{{i.alarm}}</td>
+        <td>{{i.gym}}</td>
+        <td>{{i.name}}</td>
+        <td>{{i.email}}</td>
+        <td>{{i.phone}}</td>
+        <td><button  data-toggle="modal" data-target="#edit" (click)="edit1(i.id)">Edit</button></td>
+        <td><button data-toggle="modal" data-target="#delete">Delete</button></td>
+      </tr>
+    </table>
+   </div>
+  
+  <div [hidden]="!submitted">
+    <h5> Update Successfully</h5>
+  </div>
+  
+  <div [hidden]="!deleted">
+    <h5> Delete Successfully</h5>
+  </div>
+  
+  <div *ngIf="a==1">
+    <div id="edit" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+  
+      
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h3 class="modal-title">Edit Details</h3>
+        </div>
+        <div class="modal-body">
+          <form #f="ngForm" >
+              <div class="form-group">
+                    <label>Property Name:</label>
+                    <input type="text"  name="title" class="form-control" [ngModel]="iproperty1.title" required><br>
+              </div>
+              <div class="form-group">
+                    <label>Property Status:</label>
+                    <input type="text" name="propStatus" class="form-control" [ngModel]="iproperty1.propStatus" required><br>
+              </div>
+              <div class="form-group">
+                    <label>Price:</label>
+                    <input type="text" name="price" class="form-control" [ngModel]="iproperty1.price" required><br>
+              </div>
+              <div class="form-group">
+                    <label>Area(in sqft):</label>
+                    <input type="text" name="area" class="form-control" [ngModel]="iproperty1.area" required><br>
+              </div>
+              <div class="form-group">
+                    <label>Rooms:</label>
+                    <input type="text" name="rooms" class="form-control" [ngModel]="iproperty1.rooms" required><br>
+              </div>
+              <div class="form-group">
+                    <label>Bathroom:</label>
+                    <input type="text" name="bathroom" class="form-control" [ngModel]="iproperty1.bathroom" required><br>
+              </div>
+              <div class="form-group">
+                    <label>Address:</label>
+                    <input type="text" name="address" class="form-control" [ngModel]="iproperty1.address" required><br>
+              </div>
+              <div class="form-group">
+                    <label>Postal Code:</label>
+                    <input type="text" name="postalcode" class="form-control" [ngModel]="iproperty1.postalcode" required><br>
+              </div>
+              <div class="form-group">
+                    <label>Details:</label>
+                    <input type="text" name="info" class="form-control" [ngModel]="iproperty1.info" required><br>
+              </div>
+              <div class="form-group">
+                    <label>Parking:</label>
+                    <input type="text" name="parking" class="form-control" [ngModel]="iproperty1.parking" required><br>
+              </div>
+              <div class="form-group">
+                    <label>Air Conditioner:</label>
+                    <input type="text" name="ac" class="form-control" [ngModel]="iproperty1.ac" required><br>
+              </div>
+              <div class="form-group">
+                    <label>Places to sit:</label>
+                    <input type="text" name="sit" class="form-control" [ngModel]="iproperty1.sit" required><br>
+              </div>
+              <div class="form-group">
+                    <label>Swimming Pool:</label>
+                    <input type="text" name="pool" class="form-control" [ngModel]="iproperty1.pool" required><br>
+              </div>
+              <div class="form-group">
+                    <label>Laundry:</label>
+                    <input type="text" name="laundry" class="form-control" [ngModel]="iproperty1.laundry" required><br>
+              </div>
+              <div class="form-group">
+                    <label>Window Covering:</label>
+                    <input type="text" name="window" class="form-control" [ngModel]="iproperty1.window" required><br>
+              </div>
+              <div class="form-group">
+                    <label>Central Heating:</label>
+                    <input type="text" name="heating" class="form-control" [ngModel]="iproperty1.heating" required><br>
+              </div>
+              <div class="form-group">
+                    <label>Alarm:</label>
+                    <input type="text" name="alarm" class="form-control" [ngModel]="iproperty1.alarm" required><br>
+              </div>
+              <div class="form-group">
+                    <label>Gym:</label>
+                    <input type="text" name="gym" class="form-control" [ngModel]="iproperty1.gym" required><br>
+              </div>
+              <div class="form-group">
+                    <label>Owner's name:</label>
+                    <input type="text" name="name" class="form-control" [ngModel]="iproperty1.name" required><br>
+              </div>
+              <div class="form-group">
+                    <label>Owner's email:</label>
+                    <input type="text" name="email" class="form-control" [ngModel]="iproperty1.email" required><br>
+              </div>
+              <div class="form-group">
+                    <label>Owner's phone:</label>
+                    <input type="text" name="phone" class="form-control" [ngModel]="iproperty1.phone" required><br>
+              </div>
+              <button type="submit" class="btn btn-default" data-dismiss="modal" (click)="edit(f.value)">Submit</button>
+          </form> 
+        </div>
+      </div>
+  </div>
+  </div>
+  </div>
+  
+  <div id="delete" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <h4> Are you sure you want to delete this?</h4>
+          <button type="button" class="btn btn-default" data-dismiss="modal" id="yes" > Yes </button>
+          <button type="button" class="btn btn-default" data-dismiss="modal" id="no">No </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  

@@ -1,0 +1,5 @@
+#myModal .modal-content
+{
+  height:600px;
+  overflow:auto;
+}

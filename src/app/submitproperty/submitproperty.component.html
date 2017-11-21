@@ -1,0 +1,421 @@
+
+<!-- Sub banner start -->
+<div class="sub-banner">
+    <div class="overlay">
+        <div class="container">
+            <div class="breadcrumb-area">
+                <div class="top">
+                    <h1>Submit Property</h1>
+                </div>
+                <ul class="breadcrumbs">
+                    <li><a [routerLink]="['/Home']">Home</a></li>
+                    <li class="active">Submit Property</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Sub Banner end -->
+<!-- Submit Property start -->
+<div class="submit-property">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="submit-address">
+                  <form #myform="ngForm" (ngSubmit)="newSub(myform.value)">
+                    <h1>Basic Information</h1>
+                      <div class="search-contents-sidebar">
+
+                <div class="form-group" >
+                   <label>Property Title</label>
+                   <input type="text" class="form-control"  placeholder="Property Title"  name="title"  
+                   pattern="[a-zA-Z_ ]*$" required #title="ngModel" ngModel>
+                   <span class="validate" *ngIf="title.errors && (title.touched || title.dirty)">
+                       <span class="msgs" *ngIf="title.errors.required && title.touched">Field required</span>
+                       <span class="msgs" *ngIf="title.errors.pattern && (title.errors.required || title.touched)">
+                           Property title must have only alphabets
+                       </span>
+                   </span> 
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-6">
+                       <div class="form-group" >
+                         <label>Status</label>
+                           <select class="form-control" name="propStatus" ngModel>
+                            <option value="" selected>-- select an option --</option>
+                            <option value="sale">For Sale</option>
+                             <option value="rent">For Rent</option>
+                           </select>
+                       </div>
+                    </div>
+                <div class="col-md-6">
+                   <div class="form-group">
+                        <label>Type</label>
+                          <select class="form-control" name="type" ngModel>
+                            <option value="" selected>-- select an option --</option> 
+                            <option value="Apartment">Apartment</option>
+                             <option value="House">House</option>
+                             <option value="Commercial">Commercial</option>
+                             <option value="Garage">Garage</option>
+                             <option value="Lot">Lot</option>
+                           </select>
+                   </div>
+                 </div>
+                </div>
+                     <div class="row">
+                          <div class="col-md-3">
+                             <div class="form-group">
+                                 <label>Price</label>
+                                   <input type="text" class="form-control" placeholder=" ₹"  name="price" #price="ngModel" 
+                                   pattern="^[0-9]*$" required ngModel>
+                                    <span class="validate" *ngIf="price.errors && (price.touched || price.dirty)">
+                       <span class="msgs" *ngIf="price.errors.required && price.touched">Field required</span>
+                       <span class="msgs" *ngIf="price.errors.pattern && (price.errors.required || price.touched)">
+                           Price must have only digits
+                       </span>
+                   </span> 
+                             </div>
+                           </div>
+                     <div class="col-md-3">
+                           <div class="form-group">
+                               <label>Area(in SqFt)</label>
+                                  <input type="text" class="form-control" placeholder="SqFt" name="area" pattern="^[0-9]*$" 
+                                  required #area="ngModel" ngModel>
+                                    <span class="validate" *ngIf="area.errors && (area.touched || area.dirty)">
+                       <span class="msgs" *ngIf="area.errors.required && area.touched">Field required</span>
+                       <span class="msgs" *ngIf="area.errors.pattern && (area.errors.required || area.touched)">
+                            Area must be in digits
+                       </span>
+                   </span> 
+                           </div>
+                       </div>
+                    <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Rooms</label>
+                                        <select class="form-control" name="rooms"  required ngModel>
+                                                <option value="" selected>-- select an option --</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Bathroom</label>
+                                        <select class="form-control" name="bathroom"required ngModel>
+                                                <option value="" selected>-- select an option --</option>>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- <h1>Property Gallery</h1>
+                        <div id="myDropZone" class="dropzone dropzone-design">
+                            <div class="dz-default dz-message"><span>Drop files here to upload</span></div>
+                        </div> -->
+
+                        <h1>Location</h1>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Address</label>
+                                    <input type="text" class="form-control" placeholder="Address" name="address" required ngModel>
+                                </div>
+                            </div>
+                            <div class="col-md-6" >
+                                <div class="form-group">
+                                    <label>Postal Code</label>
+                                    <input type="text" class="form-control" placeholder="Postal Code" name="postalcode" 
+                                    pattern="^[0-9]*$" required #pincode="ngModel" ngModel>
+                                   <span class="validate" *ngIf="pincode.errors && (pincode.touched || pincode.dirty)">
+                              <span class="msgs" *ngIf="pincode.errors.required && pincode.touched">
+                                  Field Required</span>
+                               <span class="msgs" *ngIf="pincode.errors.pattern && (pincode.errors.required
+                                || pincode.touched)">
+                                   Only numbers</span>
+                           </span>
+                                </div>
+                            </div>
+                        </div>
+        <h1>Detailed Information</h1>
+            <div class="row">
+                 <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Detailed Information(max. 1000 words)</label>
+                         <textarea class="form-control" placeholder="Detailed Information" name="info" ngModel></textarea>
+                    </div>
+                 </div>
+            </div>
+
+
+         <div class="col-lg-12">
+               <label class="margin-t-10">Features (optional)</label>
+                    <div class="row">
+                     <div class="col-lg-4 col-md-4 col-sm-4">
+                       <div class="checkbox checkbox-theme checkbox-circle">
+                          <input id="checkbox1" type="checkbox" name="parking" required ngModel>
+                             <label for="checkbox1">
+                                    Free Parking
+                             </label>
+                       </div>
+                    <div class="checkbox checkbox-theme checkbox-circle">
+                      <input id="checkbox2" type="checkbox" name="ac" ngModel>
+                       <label for="checkbox2"> Air Condition</label>
+                    </div>
+                    <div class="checkbox checkbox-theme checkbox-circle">
+                      <input id="checkbox3" type="checkbox" name="sit" ngModel>
+                         <label for="checkbox3"> Places to sit </label>
+                    </div>
+                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <div class="checkbox checkbox-theme checkbox-circle">
+                                            <input id="checkbox4" type="checkbox" name="pool" required ngModel>
+                                            <label for="checkbox4">
+                                                Swimming Pool
+                                            </label>
+                                        </div>
+                                        <div class="checkbox checkbox-theme checkbox-circle" >
+                                            <input id="checkbox5" type="checkbox" name=laundry ngModel>
+                                            <label for="checkbox5">
+                                                Laundry Room
+                                            </label>
+                                        </div>
+                                        <div class="checkbox checkbox-theme checkbox-circle">
+                                            <input id="checkbox6" type="checkbox" name="window" ngModel>
+                                            <label for="checkbox6">
+                                                Window Covering
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <div class="checkbox checkbox-theme checkbox-circle">
+                                            <input id="checkbox7" type="checkbox" name="heating" ngModel>
+                                            <label for="checkbox7">
+                                                Central Heating
+                                            </label>
+                                        </div>
+                                        <div class="checkbox checkbox-theme checkbox-circle">
+                                            <input id="checkbox8" type="checkbox" name="alarm" ngModel>
+                                            <label for="checkbox8">
+                                                Alarm
+                                            </label>
+                                        </div>
+                                        <div class="checkbox checkbox-theme checkbox-circle">
+                                            <input id="checkbox9" type="checkbox" name="gym" ngModel>
+                                            <label for="checkbox9">
+                                                Gym
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        
+                        <h1>Contact Details</h1>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                        
+                                    <label >Name</label>
+                                    <input type="text" class="form-control" placeholder="Name" name="name" #n="ngModel" 
+                                    required pattern="[a-zA-Z_ ]*$" ngModel>
+                                      <span class="validate" *ngIf="n.errors && (n.touched || n.dirty)">
+                       <span class="msgs" *ngIf="n.errors.required && n.touched">Field required</span>
+                       <span class="msgs" *ngIf="n.errors.pattern && (n.errors.required || n.touched)">
+                            Invalid Name
+                       </span>
+                   </span> 
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="email" class="form-control" placeholder="Email" name="email" required #mail="ngModel"
+                                    pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" ngModel>
+                                    <span class="validate" *ngIf="mail.errors && (mail.touched || mail.dirty)">
+                                   <span class="msgs" *ngIf="mail.errors.required && mail.touched">
+                                       Field Required</span>
+                                    <span class="msgs" *ngIf="mail.errors.pattern && (mail.errors.required || mail.touched)">
+                                        Invalid Email</span>
+                                </span>
+
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Phone (optional)</label>
+                                    <input type="text" class="form-control"  placeholder="Phone"  name="phone" #contact="ngModel"
+                                    required pattern="[0-9]*$" ngModel>
+                                       <span class="validate" *ngIf="contact.errors && (contact.touched || contact.dirty)">
+                       <span class="msgs" *ngIf="contact.errors.required && contact.touched">Field required</span>
+                       <span class="msgs" *ngIf="contact.errors.pattern && (contact.errors.required || contact.touched)">
+                            Invalid Phone number
+                       </span>
+                   </span> 
+                                </div>
+                            </div>
+                        </div>
+<button type="submit" class="btn btn-primary" > Submit </button> 
+  </form>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  <!-- " 
+   
+-->
+  <!--<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Preview Details</h5>
+        </div>
+        <div class="modal-body">
+                <form>
+                <div class="form-group">
+                    <label >Title</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" name="title" [(ngModel)]="prop.title" disabled>
+                    </div>
+                </div>
+                <br><br>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="textinput">Status</label>
+                    <div class="col-sm-10">
+                    <input type="text" disabled class="form-control" name="status" [(ngModel)]="prop.propStatus">
+                    </div>
+                </div>
+                <br><br>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="textinput">Property Type</label>
+                    <div class="col-sm-10">
+                    <input type="text" disabled class="form-control" name="type" [(ngModel)]="prop.type">
+                    </div>
+                </div>
+                <br><br>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="textinput">Price</label>
+                    <div class="col-sm-10">
+                    <input type="text" disabled class="form-control" name="price" [(ngModel)]="prop.price">
+                    </div>
+                </div>
+                <br><br>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="textinput">Area</label>
+                    <div class="col-sm-10">
+                    <input type="text" disabled class="form-control" name="area" [(ngModel)]="prop.area">
+                    </div>
+                </div>
+                <br><br>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="textinput">Rooms</label>
+                    <div class="col-sm-10">
+                    <input type="text" disabled class="form-control" name="rooms" [(ngModel)]="prop.rooms">
+                    </div>
+                </div>
+                <br><br>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="textinput">Bathrooms</label>
+                    <div class="col-sm-10">
+                    <input type="text" disabled class="form-control" name="bathroom" [(ngModel)]="prop.bathroom">
+                    </div>
+                </div>
+                <br><br>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="textinput">Features</label>
+                    <div class="col-sm-10">
+                    <input type="text" disabled class="form-control" name="parking" value={{j}} [(ngModel)]="prop.parking">
+                    </div>
+                </div>
+                <br><br>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="textinput">Address</label>
+                    <div class="col-sm-10">
+                    <input type="text" disabled class="form-control" name="address" [(ngModel)]="prop.address">
+                    </div>
+                </div>
+                <br><br>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="textinput">Postal Code</label>
+                    <div class="col-sm-10">
+                    <input type="text" disabled class="form-control" name="postalcode1" [(ngModel)]="prop.postalcode">
+                    </div>
+                </div>
+                <br><br>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="textinput">Details</label>
+                    <div class="col-sm-10">
+                    <input type="text" disabled class="form-control" name="info" [(ngModel)]="prop.info">
+                    </div>
+                </div>
+                <br><br>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="textinput">BuildingAge</label>
+                    <div class="col-sm-10">
+                    <input type="text" disabled class="form-control" name="buildingage" [(ngModel)]="prop.buildingage">
+                    </div>
+                </div>
+                <br><br>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="textinput">Bedrooms</label>
+                    <div class="col-sm-10">
+                    <input type="text" disabled class="form-control" name="bedrooms" [(ngModel)]="prop.bedrooms">
+                    </div>
+                </div>
+                <br><br>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="textinput">Name</label>
+                    <div class="col-sm-10">
+                    <input type="text" disabled class="form-control" name="ownername" [(ngModel)]="prop.ownername">
+                    </div>
+                </div>
+                <br><br>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="textinput">Email</label>
+                    <div class="col-sm-10">
+                    <input type="text" disabled class="form-control" name="email" [(ngModel)]="prop.email">
+                    </div>
+                </div>
+                <br><br>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="textinput">Phone</label>
+                    <div class="col-sm-10">
+                    <input type="text"  disabled class="form-control" name="phone" [(ngModel)]="prop.phone">
+                    </div>
+                </div>
+                <br><br>
+            </form>
+                                
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>Edit Details</button>
+          <button  type="button" (click)="get(prop.title,prop.propStatus)" 
+          class="btn btn-primary"> <span class="glyphicon glyphicon-check"></span>Submit</button>
+         
+        </div>
+      </div>
+    </div>
+  </div>-->
+
+
+<!-- Submit Property end 
+,status1.value,type1.value,price1.value,area1.value,rooms1.value,bathroom1.value,parking1.value,ac1.value,sit1.value,pool1.value,laundry .value,window1.value,heating1.value,alarm1.value,gym1.value,address1.value,city1.value,postalcode1.value,state1.value,info1.value,buildingage1.value,bedrooms1.value,name1.value,email1.value,phone1.value
+-->
+
+<!--
+                   
+                 -->
