@@ -44,7 +44,7 @@ export class MypropertyComponent implements OnInit {
   this.deleted=false;
   this.submitted=true;
   
-  this.service.update1(y).subscribe(t => {console.log(t);this.ngOnInit()});
+  this.service.update1(y).subscribe(t => {console.log(t);this.ngOnInit});
   }
   
   

@@ -49,7 +49,7 @@ newSub(a){
         this.feature= new feature(a.parking,a.ac,a.sit,a.pool,a.window,a.alarm,a.heating,a.gym,a.laundry,)
         console.log(a.prop);
         console.log(this.feature); 
-        this.service.post1(this.prop,this.feature,this.sign.id).subscribe(t => {console.log(t.text()),this.ngOnInit});
+        this.service.post1(this.prop,this.feature,this.sign.id).subscribe(t => {console.log(t.text());this.ngOnInit});
   this.router.navigate(['/seller',this.sign.id]);
 
 }

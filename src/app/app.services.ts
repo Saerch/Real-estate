@@ -72,10 +72,10 @@ callotp(signdata:Signup):Observable<Response>{
     return this.http.post(this.otpurl,JSON.stringify(signdata),opts);
 
 }
-forgetpassword(forgetpass:Signup):Observable<Response>{
+forgetpassword(data:Signup):Observable<Response>{
     let headers=new Headers({'Content-Type':'application/json'});
     let opts=new RequestOptions({headers:headers});
-    return this.http.post(this.otpurl,JSON.stringify(forgetpass),opts);
+    return this.http.post(this.forgetpasswordurl,JSON.stringify(data),opts);
 
 }
 logout(){
@@ -105,10 +105,17 @@ pricingnavigate(){
     }
 }
 
-update(property:Signup):Observable<Signup>{
+// update(data:Signup,id:number):Observable<Signup>{
+//     let headers=new Headers({'Content-Type':'application/json'});
+//     let opts=new RequestOptions({headers:headers});
+//     return this.http.put("http://localhost:8080/updatepassword/"+id.toString(),JSON.stringify(data),opts)
+//     //.map(this.extractData)
+//     .catch(this.handleError);
+//    }
+update(password:Signup,id:number):Observable<Signup>{
     let headers=new Headers({'Content-Type':'application/json'});
     let opts=new RequestOptions({headers:headers});
-    return this.http.put("http://localhost:8080/updatedetail/"+property.id.toString(),JSON.stringify(property),opts)
+    return this.http.put("http://localhost:8080/updatepassword/"+id.toString(),JSON.stringify(password),opts)
     //.map(this.extractData)
     .catch(this.handleError);
    }

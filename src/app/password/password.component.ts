@@ -37,8 +37,8 @@ b:boolean;
     if(s.cp===this.sign.password)
     {
           if(s.np==s.cnp)
-          {      let s1=new Signup(this.sign.fullname,this.sign.email,s.np,this.sign.stat,this.sign.phone,this.sign.username,this.sign.id)
-                  this.service.update(s1).subscribe(t => {console.log(t),this.ngOnInit()});  
+          {      let s1=new Signup(this.sign.fullname,this.sign.email,s.np,this.sign.stat,this.sign.phone,this.sign.username)
+                  this.service.update(s1,this.sign.id).subscribe(t => {console.log(t);this.ngOnInit});  
                   this.router.navigate(['/seller',this.sign.id])
 
           }

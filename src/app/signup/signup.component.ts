@@ -55,7 +55,7 @@ checkUsername(a){
 Otpverify(otp){
   console.log("otp verification");
   if(this.otpvalue==otp){
-      this.service.post(this.signdata).subscribe(t =>{console.log(t), this.ngOnInit});
+      this.service.post(this.signdata).subscribe(t =>{console.log(t); this.ngOnInit});
       this.router.navigate(['/Login']);
   }
 else{

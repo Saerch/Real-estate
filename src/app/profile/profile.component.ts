@@ -27,8 +27,8 @@ sign:Signup
   }
 
   change(s:Signup){
-    var s1= new Signup(s.fullname,s.email,this.sign.password,this.sign.stat,s.phone,this.sign.username,this.sign.id)
-    this.service.update(s1).subscribe(t => {console.log(t),this.ngOnInit()});
+    var s1= new Signup(s.fullname,s.email,this.sign.password,this.sign.stat,s.phone,this.sign.username)
+    this.service.update(s1,this.sign.id).subscribe(t => {console.log(t);this.ngOnInit});
     if(this.sign.stat=="seller"){
       this.router.navigate(['/seller',this.sign.id])
   }
