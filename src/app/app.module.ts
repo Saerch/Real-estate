@@ -29,6 +29,7 @@ import { List4Component } from './list4/list4.component';
 import { List5Component } from './list5/list5.component';
 import { PaymentComponent } from './payment/payment.component';
 import { APP_BASE_HREF } from '@angular/common';
+import { DetailsComponent } from './details/details.component';
 
 const appRoutes: Routes = [
 {path: '', component:HomeComponent},
@@ -54,6 +55,7 @@ const appRoutes: Routes = [
 {path:'List3',component:List3Component},
 {path:'List4',component:List4Component},
 {path:'List5',component:List5Component},
+{path:'details',component:DetailsComponent},
 {path:'payment',component:PaymentComponent}
 ];
 
@@ -82,7 +84,8 @@ const appRoutes: Routes = [
     List3Component,
     List4Component,
     List5Component,
-    PaymentComponent
+    PaymentComponent,
+    DetailsComponent
     
   ],
   imports: [

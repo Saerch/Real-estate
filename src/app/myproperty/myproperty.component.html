@@ -1,65 +1,87 @@
-<div class="jumbotron">
-    <h2> My Properties</h2>
-    <hr>
-  
-    <table>
-      <tr>
-        <th>S. No.</th>
-        <th>Property Title</th>
-        <th>Property Status</th>
-        <th>Property Type</th>
-        <th>Price</th>
-        <th>Area(in sqft)</th>
-        <th>Rooms</th>
-        <th>Bathroom</th>
-        <th>Address</th>
-        <th>Postal Code</th>
-        <th>Detail</th>
-        <th>Parking</th>
-        <th>Air Coditioner</th>
-        <th>Places to sit</th>
-        <th>Swimming Pool</th>
-        <th>Laundry</th>
-        <th>Window Covering</th>
-        <th>Central Heating</th>
-        <th>Alarm</th>
-        <th>Gym</th>
-        <th>Owner's Name</th>
-        <th>Owner's Email</th>
-        <th>Owner's Number</th>
-        <th>Edit</th>
-        <th>Delete</th>
-      </tr>
-      <tr *ngFor="let i of iproperty; let j = index">
-        <td>{{j+1}}</td>
-        <td>{{i.title}}</td>
-        <td>{{i.propStatus}}</td>
-        <td>{{i.type}}</td>
-        <td>{{i.price}}</td>
-        <td>{{i.area}}</td>
-        <td>{{i.rooms}}</td>
-        <td>{{i.bathroom}}</td>
-        <td>{{i.address}}</td>
-        <td>{{i.postalcode}}</td>
-        <td>{{i.info}}</td>
-        <td>{{i.parking}}</td>
-        <td>{{i.ac}}</td>
-        <td>{{i.sit}}</td>
-        <td>{{i.pool}}</td>
-        <td>{{i.laundry}}</td>
-        <td>{{i.window}}</td>
-        <td>{{i.heating}}</td>
-        <td>{{i.alarm}}</td>
-        <td>{{i.gym}}</td>
-        <td>{{i.name}}</td>
-        <td>{{i.email}}</td>
-        <td>{{i.phone}}</td>
-        <td><button  data-toggle="modal" data-target="#edit" (click)="edit1(i.id)">Edit</button></td>
-        <td><button data-toggle="modal" data-target="#delete">Delete</button></td>
-      </tr>
-    </table>
-   </div>
-  
+<div class="sub-banner">
+      <div class="overlay">
+          <div class="container">
+              <div class="breadcrumb-area">
+                  <div class="top">
+                      <h1>My Properties</h1>
+                  </div>
+                  <ul class="breadcrumbs">
+                      <li><a [routerLink]="['/Home']">Home</a></li>
+                      <li class="active">My Properties</li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+    </div>
+
+    <div class="my-propertiess">
+      <div class="container">
+          <div class="row">
+                  <div class="col-lg-9 col-md-9 col-sm-12">
+                              <!-- Heading -->
+                              <h1 class="heading">My Properties Listings</h1>
+                              <!-- My propertiess box start -->
+                              <div class="my-properties-box wow fadeInUp delay-03s clearfix">
+                                          <div *ngFor="let i of iproperty">
+                                  <!-- <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 col-pad my-propertie-theme">
+                                      <img src="" alt="myproperty" class="img-responsive">
+                                  </div> -->
+                                  <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 col-pad">
+                                        
+                                      <div class="detail">
+                                          <!-- Header -->
+                                          <header class="clearfix">
+                                                      <div class="pull-right">
+                                                                  <a [routerLink]="['/details']" class="button-sm button-theme">Details</a>
+                                                              </div>
+                                              <div class="pull-left">
+                                                  <h1 class="title">
+                                                      <a [routerLink]="['/details']">{{i.title}}</a>
+                                                  </h1>
+                                                  <h3 class="location">
+                                                          <i class="fa fa-map-marker"></i>{{i.address}}
+                                                  </h3>
+                                              </div>
+                                              <!-- Btn -->
+                                              
+                                         </header>
+                                         <hr>
+                                          <p>{{i.info}}</p>
+                                      </div>
+                                      <!-- footer -->
+                                      <div class="footer clearfix">
+                                          <div class="col-md-3 col-sm-3 col-xs-3">
+                                              <div class="price">
+                                                      {{i.price}}
+                                              </div>
+                                          </div>
+                                          <!-- <div class="col-md-3 col-sm-3 col-xs-3">
+                                              <div class="date">
+                                                  jun 30, 2016
+                                              </div>
+                                          </div> -->
+                                          <div class="col-md-6 col-sm-6 col-xs-6">
+                                              <div class="listing-meta ">
+                                                  <span>
+                                                      <button  data-toggle="modal" data-target="#edit" (click)="edit1(i.propId)"><i class="fa fa-pencil"></i>Edit</button>
+                                                          
+                                                  </span>
+                                                  <span>
+                                                      <button data-toggle="modal" data-target="#delete" (click)="delete1(i.propId)"><i class="fa fa-eye-slash"></i>Deactivate</button>
+                                                         
+                                                </span>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>    
+                                  </div>
+
+                              </div>
+                              </div>
+                              </div>
+                              </div>
+                              </div>
+                              
   <div [hidden]="!submitted">
     <h5> Update Successfully</h5>
   </div>

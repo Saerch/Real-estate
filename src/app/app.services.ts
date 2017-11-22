@@ -8,7 +8,7 @@ import {Router} from '@angular/router';
 import {Signup} from './signup/signup';
 import {Login} from './login/login'
 import{SubmitDetails} from './submitproperty/submit';
-import {feature} from './submitproperty/feature'
+
 @Injectable()
 export class AppService{
 private url="http://localhost:8080/addpersonaldetail";
@@ -44,11 +44,10 @@ post(sign:Signup):Observable<Response>{
     .map(() => null)
     .catch(this.handleError);
 }
-post1(sign:SubmitDetails,feature:feature,id:number):Observable<Response>{
+post1(sign:SubmitDetails,id:number):Observable<Response>{
     let headers=new Headers({'Content-Type':'application/json'});
     let opts=new RequestOptions({headers:headers});
-    this.http.post("http://localhost:8080/addpropertydetail/"+id,JSON.stringify(sign),opts);
-    return this.http.post("http://localhost:8080/addfeaturedetail/"+sign.propid,JSON.stringify(feature),opts)
+    return this.http.post("http://localhost:8080/addpropertydetail/"+id,JSON.stringify(sign),opts);
 
 }
 
@@ -122,7 +121,7 @@ update(password:Signup,id:number):Observable<Signup>{
    update1(property:SubmitDetails):Observable<SubmitDetails>{
     let headers=new Headers({'Content-Type':'application/json'});
     let opts=new RequestOptions({headers:headers});
-    return this.http.put("http://localhost:8080/updatepropertydetail/"+property.propid.toString(),JSON.stringify(property),opts)
+    return this.http.put("http://localhost:8080/updatepropertydetail/"+property.propId.toString(),JSON.stringify(property),opts)
     //.map(this.extractData)
     .catch(this.handleError);
    }

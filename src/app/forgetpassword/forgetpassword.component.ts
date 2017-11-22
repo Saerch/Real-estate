@@ -31,8 +31,9 @@ data:Signup;
     for(var i=0;i<this.l1.length;i++){
     if(this.l1[i].username==form.username){
       this.username=false;
+      this.email=false;
       if(this.l1[i].email==form.email){
-        this.email=false;
+        
         this.data=this.l1[i];
         this.service.forgetpassword(this.data).subscribe(t=>{
       this.otpvalue=t.text();console.log(t.text())});

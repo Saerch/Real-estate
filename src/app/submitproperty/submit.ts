@@ -1,5 +1,6 @@
 export class SubmitDetails
-{   propid:number;
+{   
+    propId:number;
     title:String;
     propStatus:String;
     type:String;
@@ -10,13 +11,29 @@ export class SubmitDetails
     address:String;
     postalcode:number;
     info:String;
-    
     name:String;
     email:String;
     phone:number;
-   //userid:number;
-constructor(name,email,propStatus,type,rooms,bathroom,
-        title,price,area,address,postalcode,phone,info)
+    parking:boolean=false;
+    ac:boolean=false;
+    balcony:boolean=false;
+    pool:boolean=false;
+    storage:boolean=false;
+    gaspipe:boolean=false;
+    alarm:boolean=false;
+    pooja:boolean=false;
+    laundry:boolean=false;
+    city:String;
+    state:String;
+    buildingage:String;
+    floor:String;
+    noofparking:String;
+    furnished:String;
+    view:String;
+
+    
+constructor(title,propStatus,type,price,area,rooms,bathroom,address,postalcode,info,name,email,phone,parking,ac,
+                balcony,pool,storage,gaspipe,alarm,pooja,laundry,city,state,buildingage,floor,noofparking,furnished,view)
         {
             this.name=name;
             this.email=email;
@@ -31,6 +48,21 @@ constructor(name,email,propStatus,type,rooms,bathroom,
             this.postalcode=postalcode;
             this.phone=phone;
             this.info=info;
-
-}
-}
+            this.parking=parking;
+            this.ac=ac;
+            this.balcony=balcony;
+            this.pool=pool;
+            this.storage=storage;
+            this.gaspipe=gaspipe;
+            this.alarm=alarm;
+            this.pooja=pooja;
+            this.laundry=laundry;
+            this.city=city;
+            this.state=state;
+            this.buildingage=buildingage;
+            this.floor=floor;
+            this.noofparking=noofparking;
+            this.furnished=furnished;
+            this.view=view;
+        }
+    }
