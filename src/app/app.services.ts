@@ -118,10 +118,10 @@ update(password:Signup,id:number):Observable<Signup>{
     //.map(this.extractData)
     .catch(this.handleError);
    }
-   update1(property:SubmitDetails):Observable<SubmitDetails>{
+   update1(property:SubmitDetails,id:number):Observable<SubmitDetails>{
     let headers=new Headers({'Content-Type':'application/json'});
     let opts=new RequestOptions({headers:headers});
-    return this.http.put("http://localhost:8080/updatepropertydetail/"+property.propId.toString(),JSON.stringify(property),opts)
+    return this.http.put("http://localhost:8080/updatepropertydetail/"+id.toString(),JSON.stringify(property),opts)
     //.map(this.extractData)
     .catch(this.handleError);
    }

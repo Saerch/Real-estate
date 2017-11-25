@@ -22,7 +22,7 @@
                               <h1 class="heading">My Properties Listings</h1>
                               <!-- My propertiess box start -->
                               <div class="my-properties-box wow fadeInUp delay-03s clearfix">
-                                          <div *ngFor="let i of iproperty">
+                                          <div *ngFor="let i of iproperty2">
                                   <!-- <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 col-pad my-propertie-theme">
                                       <img src="" alt="myproperty" class="img-responsive">
                                   </div> -->
@@ -101,92 +101,286 @@
           <h3 class="modal-title">Edit Details</h3>
         </div>
         <div class="modal-body">
-          <form #f="ngForm" >
+          <form #f="ngForm" (ngSubmit)="edit(f.value)">
               <div class="form-group">
                     <label>Property Name:</label>
-                    <input type="text"  name="title" class="form-control" [ngModel]="iproperty1.title" required><br>
+                    <input type="text"  name="title" class="form-control" [(ngModel)]="iproperty1.title" pattern="[a-zA-Z_ ]*$" #title="ngModel" required><br>
+                    <span class="validate" *ngIf="title.errors && (title.touched || title.dirty)">
+                        <span class="msgs" *ngIf="title.errors.required && title.touched">Field required</span>
+                        <span class="msgs" *ngIf="title.errors.pattern && (title.errors.required || title.touched)">
+                            Property title must have only alphabets
+                        </span>
+                    </span> 
               </div>
               <div class="form-group">
                     <label>Property Status:</label>
-                    <input type="text" name="propStatus" class="form-control" [ngModel]="iproperty1.propStatus" required><br>
+                    <select class="form-control" name="propStatus" [(ngModel)]="iproperty1.propStatus" required>
+                        <option value="" selected>-- select an option --</option>
+                        <option value="sale">For Sale</option>
+                         <option value="rent">For Rent</option>
+                       </select>
               </div>
               <div class="form-group">
+                  <label>Type:</label>
+                  <select class="form-control" name="type" required [(ngModel)]="iproperty1.type">
+                        <option value="" selected>-- select an option --</option> 
+                        <option value="Apartment">Apartment</option>
+                         <option value="House">House</option>
+                         <option value="Commercial">Commercial</option>
+                         <option value="Garage">Garage</option>
+                         <option value="Agriculture Plot">Agricultural Plot</option>
+                         <option value="Commercial Plot">Commercial Plot</option>
+                       </select>
+            </div>
+              <div class="form-group">
                     <label>Price:</label>
-                    <input type="text" name="price" class="form-control" [ngModel]="iproperty1.price" required><br>
+                    <input type="text" name="price" class="form-control" [(ngModel)]="iproperty1.price" pattern="^[0-9]*$" #price="ngModel" required><br>
+                    <span class="validate" *ngIf="price.errors && (price.touched || price.dirty)">
+                        <span class="msgs" *ngIf="price.errors.required && price.touched">Field required</span>
+                        <span class="msgs" *ngIf="price.errors.pattern && (price.errors.required || price.touched)">
+                            Price must have only digits
+                        </span>
+                    </span> 
               </div>
               <div class="form-group">
                     <label>Area(in sqft):</label>
-                    <input type="text" name="area" class="form-control" [ngModel]="iproperty1.area" required><br>
+                    <input type="text" name="area" class="form-control" [(ngModel)]="iproperty1.area" pattern="^[0-9]*$" 
+                    #area="ngModel" required><br>
+                    <span class="validate" *ngIf="area.errors && (area.touched || area.dirty)">
+                        <span class="msgs" *ngIf="area.errors.required && area.touched">Field required</span>
+                        <span class="msgs" *ngIf="area.errors.pattern && (area.errors.required || area.touched)">
+                             Area must be in digits
+                        </span>
+                    </span> 
               </div>
               <div class="form-group">
-                    <label>Rooms:</label>
-                    <input type="text" name="rooms" class="form-control" [ngModel]="iproperty1.rooms" required><br>
+                    <label>Bedroom:</label>
+                    <select class="form-control" name="rooms" required [(ngModel)]="iproperty1.rooms">
+                        <option value="" selected>-- select an option --</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                    </select>
               </div>
               <div class="form-group">
                     <label>Bathroom:</label>
-                    <input type="text" name="bathroom" class="form-control" [ngModel]="iproperty1.bathroom" required><br>
+                    <select class="form-control" name="bathroom" required [(ngModel)]="iproperty1.bathroom">
+                        <option value="" selected>-- select an option --</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                    </select>
               </div>
               <div class="form-group">
                     <label>Address:</label>
-                    <input type="text" name="address" class="form-control" [ngModel]="iproperty1.address" required><br>
+                    <input type="text" name="address" class="form-control" [(ngModel)]="iproperty1.address" required><br>
               </div>
               <div class="form-group">
                     <label>Postal Code:</label>
-                    <input type="text" name="postalcode" class="form-control" [ngModel]="iproperty1.postalcode" required><br>
+                    <input type="text" name="postalcode" class="form-control" [(ngModel)]="iproperty1.postalcode" pattern="^[0-9]*$" required #postalcode="ngModel"><br>
+                    <span class="validate" *ngIf="postalcode.errors && (postalcode.touched || postalcode.dirty)">
+                    <span class="msgs" *ngIf="postalcode.errors.required && postalcode.touched">
+                        Field Required</span>
+
+                     <span class="msgs" *ngIf="postalcode.errors.pattern && (postalcode.errors.required
+                      || postalcode.touched)">
+                         Only numbers</span>
+                        </span>
               </div>
+              <div class="form-group">
+                  <label>City:</label>
+                  <select class="form-control" name="city" required [(ngModel)]="iproperty1.city">
+                        <option value="" selected>-- select an option --</option>
+                        <option>New Delhi</option>
+                        <option>Gurgaon</option>
+                        <option>Noida</option>
+                        <option>Faridabad</option>
+                        <option>Ghaziabad</option>
+                        <option>South Delhi</option>
+                    </select>
+            </div>
+            <div class="form-group">
+                  <label>State:</label>
+                  <select class="form-control" name="state" required [(ngModel)]="iproperty1.state">
+                        <option value="" selected>-- select an option --</option>
+                        <option>Delhi</option>
+                        <option>NCR</option>
+                        
+                        
+                    </select>
+            </div>
+            <div class="form-group">
+                  <label>Building Age:</label>
+                  <select class="form-control" name="buildingage" required [(ngModel)]="iproperty1.buildingage">
+                        <option value="" selected>-- select an option --</option>
+                        <option>0-1 Years</option>
+                        <option>0-5 Years</option>
+                        <option>0-10 Years</option>
+                        <option>0-20 Years</option>
+                        <option>0-40 Years</option>
+                        <option>40+Years</option>
+                    </select>
+            </div>
+
               <div class="form-group">
                     <label>Details:</label>
-                    <input type="text" name="info" class="form-control" [ngModel]="iproperty1.info" required><br>
+                    <input type="text" name="info" class="form-control" [(ngModel)]="iproperty1.info" required><br>
               </div>
               <div class="form-group">
-                    <label>Parking:</label>
-                    <input type="text" name="parking" class="form-control" [ngModel]="iproperty1.parking" required><br>
+                  <label>Floor:</label>
+                  <select class="form-control" name="floor" required [(ngModel)]="iproperty1.floor">
+                              <option value="" selected>-- select an option --</option>
+                        <option>1st Floor</option>
+                        <option>2nd Floor</option>
+                        <option>3rd Floor</option>
+                        <option>4th Floor</option>
+                        <option>5th Floor</option>
+                        <option>6th Floor</option>
+                    </select>
+            </div>
+            <div class="form-group">
+                  <label>Parking:</label>
+                  <select class="form-control" name="noofparking" required [(ngModel)]="iproperty1.noofparking">
+                              <option value="" selected>-- select an option --</option>
+                        <option>Stilt 4-wheeler</option>
+                        <option>Stilt 2-wheeler</option>
+                        <option>Outside 4-wheeler</option>
+                        <option>Outside 2-wheeler</option>
+                        <option>Not Available</option>
+                    </select>
+            </div>
+            <div class="form-group">
+                  <label>Furnished:</label>
+                  <select class="form-control" name="furnished" required [(ngModel)]="iproperty1.furnished">
+                        <option value="" selected>-- select an option --</option>
+                        <option>Fully Furnished</option>
+                        <option>Semi Furnished</option>
+                        <option>Not Furnished</option>
+                    </select>
+            </div>
+            <div class="form-group">
+                  <label>View:</label>
+                  <select class="form-control"  name="view" required [(ngModel)]="iproperty1.view">
+                              <option value="" selected>-- select an option --</option>
+                        <option>None</option>
+                        <option>Shermukha</option>
+                        <option>Gaumukha</option>
+                        
+                    </select>
+            </div>
+              <div class="form-group">
+                    <label>Free Parking:</label>
+                    <select class="form-control"  name="parking" required [(ngModel)]="iproperty1.parking">
+                              <option value="" selected>-- select an option --</option>
+                        <option>True</option>
+                        <option>False</option>   
+                    </select>
               </div>
               <div class="form-group">
                     <label>Air Conditioner:</label>
-                    <input type="text" name="ac" class="form-control" [ngModel]="iproperty1.ac" required><br>
+                    <select class="form-control"  name="ac" required [(ngModel)]="iproperty1.ac">
+                              <option value="" selected>-- select an option --</option>
+                        <option>True</option>
+                        <option>False</option>   
+                    </select>
               </div>
               <div class="form-group">
-                    <label>Places to sit:</label>
-                    <input type="text" name="sit" class="form-control" [ngModel]="iproperty1.sit" required><br>
+                    <label>Balcony:</label>
+                    <select class="form-control"  name="balcony" required [(ngModel)]="iproperty1.balcony">
+                              <option value="" selected>-- select an option --</option>
+                        <option>True</option>
+                        <option>False</option>   
+                    </select>
               </div>
               <div class="form-group">
                     <label>Swimming Pool:</label>
-                    <input type="text" name="pool" class="form-control" [ngModel]="iproperty1.pool" required><br>
+                    <select class="form-control"  name="pool" required [(ngModel)]="iproperty1.pool">
+                              <option value="" selected>-- select an option --</option>
+                        <option>True</option>
+                        <option>False</option>   
+                    </select>
               </div>
               <div class="form-group">
                     <label>Laundry:</label>
-                    <input type="text" name="laundry" class="form-control" [ngModel]="iproperty1.laundry" required><br>
+                    <select class="form-control"  name="laundry" required [(ngModel)]="iproperty1.laundry">
+                              <option value="" selected>-- select an option --</option>
+                        <option>True</option>
+                        <option>False</option>   
+                    </select>
               </div>
               <div class="form-group">
-                    <label>Window Covering:</label>
-                    <input type="text" name="window" class="form-control" [ngModel]="iproperty1.window" required><br>
+                    <label>Storage:</label>
+                    <select class="form-control"  name="storage" required [(ngModel)]="iproperty1.storage">
+                              <option value="" selected>-- select an option --</option>
+                        <option>True</option>
+                        <option>False</option>   
+                    </select>
               </div>
               <div class="form-group">
-                    <label>Central Heating:</label>
-                    <input type="text" name="heating" class="form-control" [ngModel]="iproperty1.heating" required><br>
+                    <label>Gaspipe:</label>
+                    <select class="form-control"  name="gaspipe" required [(ngModel)]="iproperty1.gaspipe">
+                              <option value="" selected>-- select an option --</option>
+                        <option>True</option>
+                        <option>False</option>   
+                    </select>
               </div>
               <div class="form-group">
                     <label>Alarm:</label>
-                    <input type="text" name="alarm" class="form-control" [ngModel]="iproperty1.alarm" required><br>
+                    <select class="form-control"  name="alarm" required [(ngModel)]="iproperty1.alarm">
+                              <option value="" selected>-- select an option --</option>
+                        <option>True</option>
+                        <option>False</option>   
+                    </select>
               </div>
               <div class="form-group">
-                    <label>Gym:</label>
-                    <input type="text" name="gym" class="form-control" [ngModel]="iproperty1.gym" required><br>
+                    <label>Pooja Room:</label>
+                    <select class="form-control"  name="pooja" required [(ngModel)]="iproperty1.pooja">
+                              <option value="" selected>-- select an option --</option>
+                        <option>True</option>
+                        <option>False</option>   
+                    </select>
               </div>
               <div class="form-group">
                     <label>Owner's name:</label>
-                    <input type="text" name="name" class="form-control" [ngModel]="iproperty1.name" required><br>
+                    <input type="text" name="name" class="form-control" [(ngModel)]="iproperty1.name" #name="ngModel" 
+                    required pattern="[a-zA-Z_ ]*$"><br>
+                    <span class="validate" *ngIf="name.errors && (name.touched || name.dirty)">
+                        <span class="msgs" *ngIf="name.errors.required && name.touched">Field required</span>
+                        <span class="msgs" *ngIf="name.errors.pattern && (name.errors.required || name.touched)">
+                             Invalid Name
+                        </span>
+                    </span> 
               </div>
               <div class="form-group">
                     <label>Owner's email:</label>
-                    <input type="text" name="email" class="form-control" [ngModel]="iproperty1.email" required><br>
+                    <input type="text" name="email" class="form-control" [(ngModel)]="iproperty1.email" #email="ngModel"
+                    pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" required><br>
+                    <span class="validate" *ngIf="email.errors && (email.touched || email.dirty)">
+                        <span class="msgs" *ngIf="email.errors.required && email.touched">
+                            Field Required</span>
+                         <span class="msgs" *ngIf="email.errors.pattern && (email.errors.required || email.touched)">
+                             Invalid Email</span>
+                     </span>
+
               </div>
               <div class="form-group">
                     <label>Owner's phone:</label>
-                    <input type="text" name="phone" class="form-control" [ngModel]="iproperty1.phone" required><br>
+                    <input type="text" name="phone" class="form-control" [(ngModel)]="iproperty1.phone" #phone="ngModel"
+                    required pattern="[0-9]*$"><br>
+                    <span class="validate" *ngIf="phone.errors && (phone.touched || phone.dirty)">
+                        <span class="msgs" *ngIf="phone.errors.required && phone.touched">Field required</span>
+                        <span class="msgs" *ngIf="phone.errors.pattern && (phone.errors.required || phone.touched)">
+                             Invalid Phone number
+                        </span>
+                    </span> 
               </div>
-              <button type="submit" class="btn btn-default" data-dismiss="modal" (click)="edit(f.value)">Submit</button>
+              <button type="submit" class="btn btn-default" data-dismiss="modal" >Submit</button>
           </form> 
         </div>
       </div>
