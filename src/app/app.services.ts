@@ -11,12 +11,12 @@ import{SubmitDetails} from './submitproperty/submit';
 
 @Injectable()
 export class AppService{
-private url="http://localhost:8080/addpersonaldetail";
-//private url1="http://localhost:8080/addpropertydetail";
-private retrieveurl="http://localhost:8080/getpersonaldetail";
-private retrieveurl1="http://localhost:8080/getpropertydetail";
-private otpurl="http://localhost:8080/otp";
-private forgetpasswordurl="http://localhost:8080/Forgetpassword";
+private url="https://peaceful-fjord-86289.herokuapp.com/addpersonaldetail";
+//private url1="https://peaceful-fjord-86289.herokuapp.com/addpropertydetail";
+private retrieveurl="https://peaceful-fjord-86289.herokuapp.com/getpersonaldetail";
+private retrieveurl1="https://peaceful-fjord-86289.herokuapp.com/getpropertydetail";
+private otpurl="https://peaceful-fjord-86289.herokuapp.com/otp";
+private forgetpasswordurl="https://peaceful-fjord-86289.herokuapp.com/Forgetpassword";
 constructor(private http:Http,private router:Router){}
 
 getdetail():Observable<Signup[]>{
@@ -47,7 +47,7 @@ post(sign:Signup):Observable<Response>{
 post1(sign:SubmitDetails,id:number):Observable<Response>{
     let headers=new Headers({'Content-Type':'application/json'});
     let opts=new RequestOptions({headers:headers});
-    return this.http.post("http://localhost:8080/addpropertydetail/"+id,JSON.stringify(sign),opts);
+    return this.http.post("https://peaceful-fjord-86289.herokuapp.com/addpropertydetail/"+id,JSON.stringify(sign),opts);
 
 }
 
@@ -107,27 +107,31 @@ pricingnavigate(){
 // update(data:Signup,id:number):Observable<Signup>{
 //     let headers=new Headers({'Content-Type':'application/json'});
 //     let opts=new RequestOptions({headers:headers});
-//     return this.http.put("http://localhost:8080/updatepassword/"+id.toString(),JSON.stringify(data),opts)
+//     return this.http.put("https://peaceful-fjord-86289.herokuapp.com/updatepassword/"+id.toString(),JSON.stringify(data),opts)
 //     //.map(this.extractData)
 //     .catch(this.handleError);
 //    }
 update(password:Signup,id:number):Observable<Signup>{
     let headers=new Headers({'Content-Type':'application/json'});
     let opts=new RequestOptions({headers:headers});
-    return this.http.put("http://localhost:8080/updatepassword/"+id.toString(),JSON.stringify(password),opts)
+    return this.http.put("https://peaceful-fjord-86289.herokuapp.com/updatepassword/"+id.toString(),JSON.stringify(password),opts)
     //.map(this.extractData)
     .catch(this.handleError);
    }
    update1(property:SubmitDetails,id:number):Observable<SubmitDetails>{
     let headers=new Headers({'Content-Type':'application/json'});
     let opts=new RequestOptions({headers:headers});
+<<<<<<< HEAD
     return this.http.put("http://localhost:8080/updatepropertydetail/"+id.toString(),JSON.stringify(property),opts)
+=======
+    return this.http.put("https://peaceful-fjord-86289.herokuapp.com/updatepropertydetail/"+id.toString(),JSON.stringify(property),opts)
+>>>>>>> d77419a1aa374956904d6f9a3d0cf1658911ed71
     //.map(this.extractData)
     .catch(this.handleError);
    }
 
    deletedetail(prop:number){
-       return this.http.delete("http://localhost:8080/deletedetail/"+prop)
+       return this.http.delete("https://peaceful-fjord-86289.herokuapp.com/deletedetail/"+prop)
             .map(() => null)
             .catch(this.handleError);
    }
