@@ -31,8 +31,8 @@ b:boolean;
     // .subscribe(id => {this.reg1 = id});
   }
   login(l:Login){
-     console.log(l.username);
-     console.log(l.password);
+    //  console.log(l.username);
+    //  console.log(l.password);
     let l2=new Login(l.username,l.password);
 
       for(var i=0;i<this.l1.length;i++){
@@ -47,7 +47,7 @@ b:boolean;
       else{
         this.b=false
         this.a=true;
-        console.log("...........");
+        //console.log("...........");
         
       }
   }

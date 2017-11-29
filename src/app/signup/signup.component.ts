@@ -30,16 +30,16 @@ export class SignupComponent implements OnInit {
 
   signup(f:Signup, y:String,z:String){
     if(f.password===z){
-      console.log("password match")
+      //console.log("password match")
       this.a=false;
       this.b=false;
       this.signdata= new Signup(f.fullname,f.email,f.password,y,f.phone,f.username);
       console.log("sending otp.....")
       this.service.callotp(this.signdata).subscribe(t=>{
       this.otpvalue=t.text()});
-        console.log(this.otpvalue);
-    console.log("otp send")
-      console.log("logged in");
+    //     console.log(this.otpvalue);
+    // console.log("otp send")
+    //   console.log("logged in");
     }
    else{
      this.a=true;
@@ -53,7 +53,7 @@ checkUsername(a){
   }
 }
 Otpverify(otp){
-  console.log("otp verification");
+ // console.log("otp verification");
   if(this.otpvalue==otp){
       this.service.post(this.signdata).subscribe(t =>{console.log(t); this.ngOnInit});
       this.router.navigate(['/Login']);

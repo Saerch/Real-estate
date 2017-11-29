@@ -19,6 +19,7 @@ sign:Signup;
     this.route.paramMap
     .switchMap((params: ParamMap) => this.service.get(+params.get('id')))
     .subscribe(id => {this.sign = id});
+  
   }
   logout(){
     this.service.logout();

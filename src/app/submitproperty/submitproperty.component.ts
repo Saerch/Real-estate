@@ -26,7 +26,9 @@ data:SubmitDetails[];
 
     this.route.paramMap
     .switchMap((params: ParamMap) => this.service.get(+params.get('id')))
-    .subscribe(id => {this.sign = id});
+    .subscribe(id => {this.sign = id;console.log(this.sign.id)});
+
+    //console.log(this.sign);
 
     this.service.getdetail1().subscribe(t => { this.data=t});
   }

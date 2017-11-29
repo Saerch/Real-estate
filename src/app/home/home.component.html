@@ -101,6 +101,7 @@
         </div>
 
         <div class="row">
+            <form *ngFor="let details of property">
             <div class="col-lg-4 col-md-4 col-sm-6 wow fadeInUp delay-03s">
                 <!-- Recent properties box start -->
                 <div class="thumbnail recent-properties-box">
@@ -111,27 +112,29 @@
                         <header>
                             <div class="pull-left">
                                 <h1 class="title">
-                                    <a href="properties-details.html">4552 Lynn Avenue</a>
+                                    <a href="properties-details.html">{{details.title}}</a>
                                 </h1>
                             </div>
                             <!-- Price -->
-                            
+                            <div class="price">
+                                {{details.price}}
+                            </div>
                         </header>
                         <!-- Location -->
                         <h3 class="location">
                             <a href="#">
-                                <i class="fa fa-map-marker"></i>20-21 South delhi
+                                <i class="fa fa-map-marker"></i>{{details.address}}
                             </a>
                         </h3>
                         <!-- Facilities List -->
                         <ul class="facilities-list clearfix">
                             <li class="bordered-right">
                                 <i class="flaticon-square-layouting-with-black-square-in-east-area"></i>
-                                <span>4800 sq ft</span>
+                                <span>{{details.area}}</span>
                             </li>
                             <li>
                                 <i class="flaticon-bed"></i>
-                                <span>2 Bedroom</span>
+                                <span>{{details.rooms}}</span>
                             </li>
                             <li>
                                 <i class="flaticon-monitor"></i>
@@ -139,7 +142,7 @@
                             </li>
                             <li>
                                 <i class="flaticon-holidays"></i>
-                                <span>3 Bathroom</span>
+                                <span> {{details.bathroom}} </span>
                             </li>
                             <li>
                                 <i class="flaticon-vehicle"></i>
@@ -147,169 +150,27 @@
                             </li>
                             <li>
                                 <i class="flaticon-building"></i>
-                                <span> 3 Balcony</span>
+                                <span> {{details.balcony}} </span>
                             </li>
                         </ul>
                         <!-- Footer -->
                         <div class="footer">
                             <a href="#">
-                                <i class="fa fa-user"></i> Jhon Doe
+                                <i class="fa fa-user"></i> {{details.name}}
                             </a>
-                            <span>
-                                    <i class="fa fa-calendar-o"></i> 1 day ago
-                                </span>
                         </div>
                     </div>
                     <!-- Tag -->
                     <span class="tag-f">
-                            <a [routerLink] = "['/Details']" >Details</a>
-                        </span>
+                        <a href="properties-details.html">Featured</a>
+                    </span>
                     <span class="tag-s">
-                        <a [routerLink] = "['/Login']">Price</a>
+                        {{details.propStatus}}
                     </span>
                 </div>
                 <!-- Recent properties box end -->
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-6 wow fadeInUp delay-03s">
-                <!-- Recent properties box start -->
-                <div class="thumbnail recent-properties-box">
-                    <img src="./assets/img/properties/properties-3.jpg" alt="properties-3" class="img-responsive">
-                    <!-- Detail -->
-                    <div class="caption detail">
-                        <!-- Header -->
-                        <header>
-                            <div class="pull-left">
-                                <h1 class="title">
-                                    <a href="properties-details.html">Kailash Hills</a>
-                                </h1>
-                            </div>
-                            <!-- Price -->
-                            
-                        </header>
-                        <!-- Location -->
-                        <h3 class="location">
-                            <a href="#">
-                                <i class="fa fa-map-marker"></i>20-21 South delhi
-                            </a>
-                        </h3>
-                        <!-- Facilities List -->
-                        <ul class="facilities-list clearfix">
-                            <li class="bordered-right">
-                                <i class="flaticon-square-layouting-with-black-square-in-east-area"></i>
-                                <span>4800 sq ft</span>
-                            </li>
-                            <li>
-                                <i class="flaticon-bed"></i>
-                                <span>2 Bedroom</span>
-                            </li>
-                            <li>
-                                <i class="flaticon-monitor"></i>
-                                <span>1 TV Lounge</span>
-                            </li>
-                            <li>
-                                <i class="flaticon-holidays"></i>
-                                <span>3 Bathroom</span>
-                            </li>
-                            <li>
-                                <i class="flaticon-vehicle"></i>
-                                <span>1 Garage</span>
-                            </li>
-                            <li>
-                                <i class="flaticon-building"></i>
-                                <span> 3 Balcony</span>
-                            </li>
-                        </ul>
-                        <!-- Footer -->
-                        <div class="footer">
-                            <a href="#">
-                                <i class="fa fa-user"></i> Jhon Doe
-                            </a>
-                            <span>
-                                    <i class="fa fa-calendar-o"></i> 1 day ago
-                                </span>
-                        </div>
-                    </div>
-                    <!-- Tag -->
-                    <span class="tag-f">
-                            <a [routerLink] = "['/Details']">Details</a>
-                        </span>
-                    <span class="tag-s">
-                        <a [routerLink] = "['/Login']">Price</a>
-                    </span>
-                </div>
-                <!-- Recent properties box end -->
-            </div>
-            <div class="col-lg-4 col-md-4 hidden-sm wow fadeInUp delay-03s">
-                <!-- Recent properties box start -->
-                <div class="thumbnail recent-properties-box">
-                    <img src="./assets/img/properties/properties-2.jpg" alt="properties-2" class="img-responsive">
-                    <!-- Detail -->
-                    <div class="caption detail">
-                        <!-- Header -->
-                        <header>
-                            <div class="pull-left">
-                                <h1 class="title">
-                                    <a href="properties-details.html">Masons Villas</a>
-                                </h1>
-                            </div>
-                            <!-- Price -->
-                           
-                        </header>
-                        <!-- Location -->
-                        <h3 class="location">
-                            <a href="#">
-                                <i class="fa fa-map-marker"></i>20-21 South delhi
-                            </a>
-                        </h3>
-                        <!-- Facilities List -->
-                        <ul class="facilities-list clearfix">
-                            <li class="bordered-right">
-                                <i class="flaticon-square-layouting-with-black-square-in-east-area"></i>
-                                <span>4800 sq ft</span>
-                            </li>
-                            <li>
-                                <i class="flaticon-bed"></i>
-                                <span>2 Bedroom</span>
-                            </li>
-                            <li>
-                                <i class="flaticon-monitor"></i>
-                                <span>1 TV Lounge</span>
-                            </li>
-                            <li>
-                                <i class="flaticon-holidays"></i>
-                                <span>3 Bathroom</span>
-                            </li>
-                            <li>
-                                <i class="flaticon-vehicle"></i>
-                                <span>1 Garage</span>
-                            </li>
-                            <li>
-                                <i class="flaticon-building"></i>
-                                <span> 3 Balcony</span>
-                            </li>
-                        </ul>
-                        <!-- Footer -->
-                        <div class="footer">
-                            <a href="#">
-                                <i class="fa fa-user"></i> Jhon Doe
-                            </a>
-                            <span>
-                                <i class="fa fa-calendar-o"></i> 1 day ago
-                            </span>
-                        </div>
-                    </div>
-                    <!-- Tag -->
-                    <span class="tag-f">
-                            <a [routerLink] = "['/Details']">Details</a>
-                        </span>
-                    <span class="tag-s">
-                        <a [routerLink] = "['/Login']">Price</a>
-                    </span>
-                </div>
-               
-                <a [routerLink] = "['/List']" class="btn button-md button-theme">More</a>
-                <!-- Recent properties box end -->
-            </div>
+        </form>
         </div>
     </div>
 </div>
