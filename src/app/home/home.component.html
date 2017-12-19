@@ -12,7 +12,7 @@
                 <div class="container">
                     <div class="carousel-caption banner-slider-inner banner-top-align">
                         <div>
-                            <h1 data-animation="animated fadeInDown delay-05s"><span>Welcome to</span> TeamTiger</h1>
+                            <h1 data-animation="animated fadeInDown delay-05s"><span>Welcome</span></h1>
                             
                         </div>
                     </div>
@@ -70,16 +70,14 @@
         <div class="search-area-inner">
             <div class="search-contents show-search-area animated fadeInUp">
                 <div class="row">
-                    
-                
-                    <input type="text" id="fname" name="firstname" placeholder="What are you looking for.......">
-                    
-                 <br><br>
-                  
+                    <form #form="ngForm">
                         <div class="form-group">
-                            <button class="search-button">Search</button>
+                    <input type="text" id="location" class="form-control" name="location" placeholder="Search by location"  required #location  ngModel>
+                    </div>
+                        <div class="form-group">
+                            <button class="search-button" (click)="locationList(location.value)">Search</button>
                         </div>
-                
+                        </form>
                 </div>
             </div>
         </div>
@@ -105,68 +103,47 @@
             <div class="col-lg-4 col-md-4 col-sm-6 wow fadeInUp delay-03s">
                 <!-- Recent properties box start -->
                 <div class="thumbnail recent-properties-box">
-                    <img src="./assets/img/properties/properties-1.jpg" alt="properties-1" class="img-responsive">
+                    <img [src]="details.image" alt="properties-1" class="img-responsive">
                     <!-- Detail -->
                     <div class="caption detail">
                         <!-- Header -->
                         <header>
                             <div class="pull-left">
                                 <h1 class="title">
-                                    <a href="properties-details.html">{{details.title}}</a>
+                                    <a [routerLink]="['/propertyDetails']" (click)="displayProperty(details.propId)">{{details.title}}</a>
                                 </h1>
                             </div>
-                            <!-- Price -->
-                            <div class="price">
-                                {{details.price}}
-                            </div>
+                            <div class="pull-right">
+                                    <p>
+                                        {{details.propStatus}}
+                                    </p>
+                                </div>
                         </header>
                         <!-- Location -->
                         <h3 class="location">
-                            <a href="#">
                                 <i class="fa fa-map-marker"></i>{{details.address}}
-                            </a>
                         </h3>
                         <!-- Facilities List -->
                         <ul class="facilities-list clearfix">
-                            <li class="bordered-right">
-                                <i class="flaticon-square-layouting-with-black-square-in-east-area"></i>
-                                <span>{{details.area}}</span>
-                            </li>
-                            <li>
-                                <i class="flaticon-bed"></i>
-                                <span>{{details.rooms}}</span>
-                            </li>
-                            <li>
-                                <i class="flaticon-monitor"></i>
-                                <span>1 TV Lounge</span>
-                            </li>
-                            <li>
-                                <i class="flaticon-holidays"></i>
-                                <span> {{details.bathroom}} </span>
-                            </li>
-                            <li>
-                                <i class="flaticon-vehicle"></i>
-                                <span>1 Garage</span>
-                            </li>
-                            <li>
-                                <i class="flaticon-building"></i>
-                                <span> {{details.balcony}} </span>
-                            </li>
+                                    <li>
+                                        <i class="flaticon-square-layouting-with-black-square-in-east-area"></i><strong>Area(in sqft): </strong>{{details.area}}
+                                    </li>
+                                    <li>
+                                        <i class="flaticon-monitor"></i><strong>Property Type: </strong>{{details.type}}
+                                    </li>
+                                <li>
+                                    <i class="flaticon-bed"></i><strong>Bedroom: </strong>{{details.rooms}}
+                                </li>
+                                <li>
+                                    <i class="fa fa-bath"></i><strong>Bathroom: </strong>{{details.bathroom}}
+                                </li>
                         </ul>
                         <!-- Footer -->
                         <div class="footer">
-                            <a href="#">
                                 <i class="fa fa-user"></i> {{details.name}}
-                            </a>
                         </div>
                     </div>
-                    <!-- Tag -->
-                    <span class="tag-f">
-                        <a href="properties-details.html">Featured</a>
-                    </span>
-                    <span class="tag-s">
-                        {{details.propStatus}}
-                    </span>
+                    
                 </div>
                 <!-- Recent properties box end -->
             </div>
@@ -259,7 +236,7 @@
 
 
 <!-- Counters strat -->
-<div class="counters">
+<!-- <div class="counters">
     <div class="counters-inner">
         <div class="container">
             <div class="row">
@@ -294,7 +271,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <!-- Counters end -->
 
 <!-- Partners block start 
@@ -358,10 +335,10 @@
                     <a href="index.html" class="footer-logo">
                         <img src="./assets/img/House-Lannister-Main-Shield.png" alt="footer-logo">
                     </a>
-                    <div class="clearfix"></div>
+                    <!-- <div class="clearfix"></div>
                     <!-- paragraph -->
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                </div>
+                </div> -->
             </div>
 
             <div class="col-md-3 col-sm-6 footer-item">
@@ -402,9 +379,6 @@
                         </li>
                         <li>
                             <a [routerLink] = "['/About']">About</a>
-                        </li>
-                        <li>
-                            <a [routerLink] = "['/contact']">Contact</a>
                         </li>
                     </ul>
                 </div>

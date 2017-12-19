@@ -22,45 +22,84 @@
       <!-- Main title -->
       <div class="main-title">
           <h1>Contact with us</h1>
-          <div class="border">
+           <div class="border">
               <div class="border-inner"></div>
           </div>
-           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ac tortor at tellus feugiat congue quis ut nunc. Semper ac dolor vitae accumsan. interdum hendrerit lacinia.</p>
-      </div>
+          <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ac tortor at tellus feugiat congue quis ut nunc. Semper ac dolor vitae accumsan. interdum hendrerit lacinia.</p>-->
+      </div> 
       <div class="row">
           <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
               <!-- Contact form start -->
               <div class="contact-form">
-                  <form id="contact_form" action="https://storage.googleapis.com/themeforest-real-house/index.html" method="POST" enctype="multipart/form-data">
+                  <form #contactForm="ngForm">
                       <div class="row">
+
+                          
                           <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                              <div class="form-group fullname">
-                                  <input type="text" name="full-name" class="input-text" placeholder="Full Name">
+                                <label>Fullname :</label>
+                              <div class="form-group">
+                                    <input type="text" name="fullname" class="input-text alpha_bet" placeholder="Full Name" 
+                                    required minlength="3" maxlength="50" pattern="^[a-zA-Z_ ]*$" #fullname="ngModel" ngModel>
+                                    <span class="validate" *ngIf="fullname.errors && (fullname.touched || fullname.dirty)">
+                                            <span class="msgs" *ngIf="fullname.errors.required && fullname.touched">
+                                                Field Required</span>
+                                             <span class="msgs" *ngIf="fullname.errors.pattern && (fullname.errors.required || fullname.touched)">
+                                                 Full name must only have alphabets</span> 
+                                         </span>
                               </div>
                           </div>
+
+                          
                           <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                              <div class="form-group enter-email">
-                                  <input type="email" name="email" class="input-text" placeholder="Enter email">
+                                <label>Email :</label>
+                              <div class="form-group">
+                                    <input type="email" name="email" class="input-text" placeholder="Email Address" [value]="email.value?.toLowerCase()"
+                                    required pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
+                                    #email="ngModel" ngModel>
+                                    <span class="validate" *ngIf="email.errors && (email.touched || email.dirty)">
+                                            <span class="msgs" *ngIf="email.errors.required && email.touched">
+                                                Field Required</span>
+                                             <span class="msgs" *ngIf="email.errors.pattern && (email.errors.required || email.touched)">
+                                                Email format should be <small><b>xyz@abc.com</b></small></span>
+                                         </span>
                               </div>
                           </div>
+
+                          
                           <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                              <div class="form-group subject">
-                                  <input type="text" name="subject" class="input-text" placeholder="Subject">
+                                <label>Subject :</label>
+                              <div class="form-group">
+                                  <input type="text" name="subject" minlength="5" maxlength="50" class="input-text" placeholder="Subject" required ngModel>
                               </div>
                           </div>
+
+                          
                           <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                              <div class="form-group number">
-                                  <input type="text" name="phone" class="input-text" placeholder="Phone Number">
+                                <label>Phone Number</label>
+                              <div class="form-group">
+                                    <input type="text" name="phone" class="input-text mobileNo" placeholder="Mobile number here" minlength="10" maxlength="10"
+                                    required pattern="^[6789]\d{9}$" #phone="ngModel" ngModel >
+                                    <span class="validate" *ngIf="phone.errors && (phone.touched || phone.dirty)">
+                                       <span class="msgs" *ngIf="phone.errors.required && phone.touched">
+                                           Field Required</span>
+                                        <span class="msgs" *ngIf="phone.errors.pattern && (phone.errors.required
+                                         || phone.touched)">
+                                            Not a valid phone number</span> 
+                                    </span>
                               </div>
                           </div>
+
+                          
                           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 clearfix">
-                              <div class="form-group message">
-                                  <textarea class="input-text" name="message" placeholder="Write message"></textarea>
+                              <label>Write Message</label>
+                              <div class="form-group">
+                                  <textarea class="input-text" name="message" minlength="1" maxlength="10000" placeholder="Write message" required ngModel></textarea>
                               </div>
                           </div>
+
                           <div class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
                               <div class="form-group send-btn">
-                                  <button type="submit" class="button-md button-theme">Send Message</button>
+                                  <button type="button" class="button-md button-theme" (click)="send(contactForm.value)">Send Message</button>
                               </div>
                           </div>
                       </div>
@@ -77,7 +116,7 @@
                       </div>
                       <div class="media-body">
                           <h4>Office Address</h4>
-                          <p>Lorem Ipsum is simply dummy text printing and type setting industry 5562. po alpu</p>
+                          <h5>F-15 Kalkaji Delhi</h5>
                       </div>
                   </div>
                   <div class="media">
@@ -86,12 +125,9 @@
                       </div>
                       <div class="media-body">
                           <h4>Phone Number</h4>
-                          <p>
-                              <a href="tel:0477-0477-8556-552">office: 0477 8556 552</a>
-                          </p>
-                          <p>
-                              <a href="tel:+55-417-634-7071">Mobile: +55 417 634 7071</a>
-                          </p>
+                          <h5>
+                              office: 0477 8556 552
+                          </h5>
                       </div>
                   </div>
                   <div class="media">
@@ -100,12 +136,9 @@
                       </div>
                       <div class="media-body">
                           <h4>Email Address</h4>
-                          <p>
-                              <a href="mailto:sales@TeamTiger.com">sales@TeamTiger.com</a>
-                          </p>
-                          <p>
-                              <a href="www.example.com" target="_blank">www.example.com</a>
-                          </p>
+                          <h5>
+                              sales@TeamTiger.com
+                          </h5>
                       </div>
                   </div>
               </div>

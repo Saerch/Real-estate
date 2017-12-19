@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {AppService} from '../app.services'
-import 'rxjs/add/operator/switchMap';
-import {ActivatedRoute,ParamMap} from '@angular/router';
 import {Signup} from '../signup/signup'
 @Component({
   selector: 'app-user-dashboard',
@@ -11,16 +9,26 @@ import {Signup} from '../signup/signup'
 })
 export class UserDashboardComponent implements OnInit {
 sign:Signup;
-y:number
-  constructor(private service:AppService,private route: ActivatedRoute) { }
+id:number;
+fullDetail:Signup[]=[];
+data:Signup;
+  constructor(private service:AppService) { }
 
   ngOnInit() {
-    this.service.checkcredentials();
     
-    this.route.paramMap
-    .switchMap((params: ParamMap) => this.service.get(+params.get('id')))
-    .subscribe(id => {this.sign = id});
+    this.id=this.service.checkcredentials();
     
+    this.service.getdetail().subscribe(data =>{
+      this.fullDetail=data;this.displayUser()});
+  }
+
+  displayUser(){
+    for(var i=0;i<this.fullDetail.length;i++)
+    if(this.fullDetail[i].id==this.id){
+      if(this.fullDetail[i].stat=="buyer"){
+        this.data=this.fullDetail[i];
+    }
+  }
   }
 
   logout(){

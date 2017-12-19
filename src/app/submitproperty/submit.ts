@@ -31,9 +31,11 @@ export class SubmitDetails
     furnished:String;
     view:String;
     pd:any;
-    
-constructor(title,propStatus,type,price,area,rooms,bathroom,address,postalcode,info,name,email,phone,parking,ac,
-                balcony,pool,storage,gaspipe,alarm,pooja,laundry,city,state,buildingage,floor,noofparking,furnished,view)
+    location:String;
+    image:any;
+    propertyStat:String="activate";
+constructor(title,propStatus,type,price,area,rooms,bathroom,address,postalcode,info,name,email,phone,parking,ac,image,
+                balcony,pool,storage,gaspipe,alarm,pooja,laundry,city,state,buildingage,floor,noofparking,furnished,view,location,propertyStat)
         {
             this.name=name;
             this.email=email;
@@ -64,5 +66,8 @@ constructor(title,propStatus,type,price,area,rooms,bathroom,address,postalcode,i
             this.noofparking=noofparking;
             this.furnished=furnished;
             this.view=view;
+            this.location=location;
+            this.image=image;
+            this.propertyStat=propertyStat;
         }
     }

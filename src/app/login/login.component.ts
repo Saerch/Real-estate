@@ -3,8 +3,6 @@ import {AppService} from '../app.services'
 import {Signup} from '../signup/signup'
 import {Login} from './login'
 import {Router} from '@angular/router';
-import 'rxjs/add/operator/switchMap';
-import {ActivatedRoute,ParamMap} from '@angular/router';
 
 
 @Component({
@@ -14,45 +12,33 @@ import {ActivatedRoute,ParamMap} from '@angular/router';
   providers:[AppService]
 })
 export class LoginComponent implements OnInit {
-l1:Signup[]=[];
-a:boolean=false;
+// l1:Signup[]=[];
+a:boolean;
 b:boolean;
 // reg1:any={};
 // reg2:any={};
-  constructor(private service:AppService,private router:Router,private route:ActivatedRoute) { }
-
+  constructor(private service:AppService,private router:Router) { }
+message:String;
   ngOnInit() {
-    this.service.getdetail()
-    .subscribe(l1=>{
-      this.l1=l1
-    });
-    // this.route.paramMap
-    // .switchMap((params: ParamMap) => this.service.get(+params.get('id')))
-    // .subscribe(id => {this.reg1 = id});
+     
   }
-  login(l:Login){
-    //  console.log(l.username);
-    //  console.log(l.password);
-    let l2=new Login(l.username,l.password);
+  login(l){
 
-      for(var i=0;i<this.l1.length;i++){
-
-      if(this.l1[i].username==l.username){
-        console.log("email matched");
-        if(!this.service.loggedin(l2,this.l1)){
-         this.a=false;  
-          this.b=true;   
-        } 
+    this.service.loggedin(l).subscribe(message =>{ this.message=message.text() });
+    if(this.message=="user not found"){
+      this.a=true;
+    }
+    else if(this.message=="password not matched"){
+      this.b=true;
+    }
+    else if(this.message=="seller"){
+      localStorage.setItem("user",l.username);
+      this.router.navigate(['/seller']);
       }
-      else{
-        this.b=false
-        this.a=true;
-        //console.log("...........");
-        
+    else if(this.message=="buyer"){
+      localStorage.setItem("user",l.username);
+      this.router.navigate(['/buyer']); 
       }
-  }
     }
   }
-
-    
 

@@ -3,6 +3,7 @@ import {AppService} from '../app.services';
 import {Router} from '@angular/router';
 import {Signup} from '../signup/signup'
 
+declare var $:any;
 @Component({
   selector: 'app-forgetpassword',
   templateUrl: './forgetpassword.component.html',
@@ -17,8 +18,13 @@ data:Signup;
   signdata:Signup;
   password:boolean;
   a:boolean;
-  email:boolean;
-  username:boolean;
+  email:boolean=false;
+  username:boolean=false;
+  otp:boolean;
+  type="password";
+  show:boolean;
+  type1="password";
+  show1:boolean;
   constructor(private service:AppService,private router:Router) { }
 
   ngOnInit() {
@@ -27,17 +33,34 @@ data:Signup;
       this.l1=l1
     });
   }
+
+  ngAfterViewChecked() {
+
+    $('.alpha_bet').keypress(function(key) {
+        if((key.charCode < 97 || key.charCode > 122) && (key.charCode < 65 || key.charCode > 90) && (key.charCode!=32) && (key.charCode!=45) ) return false;
+    });
+
+    $('.mobileNo').keypress(function(key) {
+        if(key.charCode < 48 || key.charCode > 57) return false;
+    });
+
+  }
+
   sendmail(form){
-    for(var i=0;i<this.l1.length;i++){
+    this.username=false;
+    this.email=false;
+    this.otp=false;
+    var size=this.l1.length;
+    for(var i=0;i<size;i++){
     if(this.l1[i].username==form.username){
-      this.username=false;
-      this.email=false;
       if(this.l1[i].email==form.email){
-        
+        this.otp=true;
         this.data=this.l1[i];
         this.service.forgetpassword(this.data).subscribe(t=>{
-      this.otpvalue=t.text();console.log(t.text())});
-      //console.log(this.otpvalue);
+      this.otpvalue=t.text();setTimeout});
+      setTimeout(()=>{    
+        this.otp = false;
+   },600000);
       }
     else{
       this.email=true;
@@ -48,8 +71,9 @@ data:Signup;
 }
   }
   }
+  
   Otpverify(otp){
-  console.log("otp verification");
+    this.otpmsg=false;
   if(this.otpvalue==otp){
     this.password=true;
    }
@@ -60,13 +84,33 @@ this.otpmsg=true;
 save(password){
   if(password.np==password.cnp){
     this.a=false;
-    console.log(this.data.id);
     var signup=new Signup(this.data.fullname,this.data.email,password.np,this.data.stat,this.data.phone,this.data.username);
-    console.log(signup.id);
-    this.service.update(signup,this.data.id).subscribe(t =>{console.log(t); this.ngOnInit});
+    this.service.update(signup,this.data.id).subscribe(t =>{this.ngOnInit();});
+    this.router.navigate(['/login']);
   }
   else{
     this.a=true;
   }
+}
+
+toggleShow()
+{
+    this.show = !this.show;
+    if (this.show){
+        this.type = "text";
+    }
+    else {
+        this.type = "password";
+    }
+}
+toggleShow1()
+{
+    this.show1 = !this.show1;
+    if (this.show1){
+        this.type1 = "text";
+    }
+    else {
+        this.type1 = "password";
+    }
 }
 }

@@ -32,36 +32,36 @@
                             Manage Account
                         </h3>
                         <p >
-                        <a [routerLink]="['/profile',sign.id]">
+                        <a [routerLink]="['/profile']">
                                 <i class="flaticon-social"></i>My Profile
                             </a>
                         </p>
-                        <p>
+                        <!-- <p>
                             <a [routerLink]="['/message',sign.id]">
                                 <i class="glyphicon glyphicon-envelope"></i>Messages
                             </a>
-                        </p>
+                        </p> -->
                         
                         <p>
-                            <a [routerLink]="['/notification',sign.id]">
+                            <a [routerLink]="['/notification']">
                                 <i class="glyphicon glyphicon-bell"></i>Notifications
                             </a>
                         </p>
 
                         <p>
-                            <a [routerLink]="['/myproperty',sign.id]">
+                            <a [routerLink]="['/myproperty']">
                                 <i class="glyphicon glyphicon-plus"></i>My Properties
                             </a>
                         </p>
                         <p>
-                            <a [routerLink]="['/Submit',sign.id]">
+                            <a [routerLink]="['/Submit']">
                                 <i class="fa fa-building"></i>Submit new property
                             </a>
                         </p>
                     </div>
                     <div class="item">
                         <p>
-                            <a [routerLink]="['/password',sign.id]">
+                            <a [routerLink]="['/password']">
                                 <i class="flaticon-security"></i>Change Password
                             </a>
                         </p>
@@ -93,26 +93,14 @@
 
             <div class="col-lg-6 col-md-6 col-sm-5">
                 <div class="jumbotron">
-                <h2> Welcome {{sign.username}}!!!</h2>
+                <h2> Welcome {{data?.fullname}}!!!</h2>
                 </div>
                 <div class="item">
                   <router-outlet></router-outlet>
                 </div>
             </div>
             
-             <div class="col-lg-3 col-md-3 col-sm-3">
-                <!-- Avatar start -->
-                <div class="edit-profile-photo">
-                    <img src="../assets/img/avatar/avatar-2.jpg" alt="Onwer-1" class="img-responsive">
-                    <div class="change-photo-btn">
-                        <div class="photoUpload">
-                            <span><i class="fa fa-upload"></i> Upload Photo</span>
-                            <input type="file" class="upload">
-                        </div>
-                    </div>
-                </div>
-                <!-- Avatar end -->
-</div>
+             
         </div>
     </div>
 <!-- My profile end -->
@@ -168,12 +156,6 @@
                         </li>
                         <li>
                             <a  [routerLink] = "['/Signup']">Sign Up</a>
-                        </li>
-                        <li>
-                            <a  [routerLink] = "['/Myprofile']">My Account</a>
-                        </li>
-                        <li>
-                            <a  [routerLink] = "['/Submit']">Add Property</a>
                         </li>
                         <li>
                             <a [routerLink] = "['/Pricing']">Pricing</a>

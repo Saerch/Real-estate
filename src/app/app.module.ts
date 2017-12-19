@@ -29,34 +29,36 @@ import { List4Component } from './list4/list4.component';
 import { List5Component } from './list5/list5.component';
 import { PaymentComponent } from './payment/payment.component';
 import { APP_BASE_HREF } from '@angular/common';
-import { DetailsComponent } from './details/details.component';
+import {PropertyListComponent} from './property-list/property-list.component';
+import { PropertyDetailComponent } from './property-detail/property-detail.component'
 
 const appRoutes: Routes = [
-{path: '', component:HomeComponent},
+{path: '', redirectTo:'Home', pathMatch:"full"},
 {path: 'Login', component: LoginComponent },
-{path: 'login/:id', component: LoginComponent },
+{path: 'login', component: LoginComponent },
 {path: 'Signup', component: SignupComponent },
 {path: 'Home',component:HomeComponent},
 {path:'About',component:AboutComponent},
-{path:'seller/:id',component:MyprofileComponent},
-{path:'Submit/:id',component:SubmitpropertyComponent},
+{path:'propertyList',component:PropertyListComponent},
+{path:'seller',component:MyprofileComponent},
+{path:'Submit',component:SubmitpropertyComponent},
 {path:'Pricing',component:PricingtableComponent},
 {path:'Forgetpassword',component:ForgetpasswordComponent},
-{path:'message/:id',component:MessageComponent},
-{path:'wishlist/:id',component:WishlistComponent},
-{path:'notification/:id',component:NotificationComponent},
-{path:'password/:id',component:PasswordComponent},
+{path:'message',component:MessageComponent},
+{path:'wishlist',component:WishlistComponent},
+{path:'notification',component:NotificationComponent},
+{path:'password',component:PasswordComponent},
 {path:'contact',component:ContactComponent},
-{path:'buyer/:id',component:UserDashboardComponent},
-{path:'profile/:id',component:ProfileComponent},
-{path:'myproperty/:id',component:MypropertyComponent},
+{path:'buyer',component:UserDashboardComponent},
+{path:'profile',component:ProfileComponent},
+{path:'myproperty',component:MypropertyComponent},
 {path:'List',component:ListComponent},
 {path:'List2',component:List2Component},
 {path:'List3',component:List3Component},
 {path:'List4',component:List4Component},
 {path:'List5',component:List5Component},
-{path:'details',component:DetailsComponent},
-{path:'payment',component:PaymentComponent}
+{path:'payment',component:PaymentComponent},
+{path:'propertyDetails',component:PropertyDetailComponent}
 ];
 
 @NgModule({
@@ -85,8 +87,8 @@ const appRoutes: Routes = [
     List4Component,
     List5Component,
     PaymentComponent,
-    DetailsComponent
-    
+    PropertyListComponent,
+    PropertyDetailComponent
   ],
   imports: [
     BrowserModule,

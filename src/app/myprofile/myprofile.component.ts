@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {AppService} from '../app.services'
-import 'rxjs/add/operator/switchMap';
-import {ActivatedRoute,ParamMap} from '@angular/router';
-import {Signup} from '../signup/signup'
+import {AppService} from '../app.services';
+import {Signup} from '../signup/signup';
+
 @Component({
   selector: 'app-myprofile',
   templateUrl: './myprofile.component.html',
@@ -11,16 +10,30 @@ import {Signup} from '../signup/signup'
 })
 export class MyprofileComponent implements OnInit {
 sign:Signup;
-  constructor(private service:AppService,private route: ActivatedRoute) { }
+name:String;
+fullDetail:Signup[];
+data:Signup
+  constructor(private service:AppService) { }
 
   ngOnInit() {
-    this.service.checkcredentials();
-    
-    this.route.paramMap
-    .switchMap((params: ParamMap) => this.service.get(+params.get('id')))
-    .subscribe(id => {this.sign = id});
   
+    this.name=this.service.checkcredentials();
+    
+    this.service.getdetail().subscribe(data =>{
+    this.fullDetail=data;this.displayUser()});
+
   }
+
+  displayUser(){
+    for(var i=0;i<this.fullDetail.length;i++)
+    if(this.fullDetail[i].username==this.name){
+      localStorage.setItem("user",JSON.stringify(this.fullDetail[i].id));
+      if(this.fullDetail[i].stat=="seller"){
+        this.data=this.fullDetail[i];
+    }
+  }
+  }
+  
   logout(){
     this.service.logout();
   }
